@@ -3,7 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class CreateExercises extends Component {
+export default class Edit extends Component {
   constructor(props) {
     super(props);
 
@@ -16,17 +16,31 @@ export default class CreateExercises extends Component {
     this.state = {
       username: "",
       description: "",
-      duration: 0,
       date: new Date(),
       users: []
     };
   }
 
   componentDidMount() {
+    axios
+      .get("http://localhost:5000/posts/" + this.props.match.params.id)
+      .then(response => {
+        this.setState({
+          username: response.data.username,
+          description: response.data.description,
+          duration: response.data.duration,
+          date: new Date(response.data.date)
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
     axios.get("http://localhost:5000/users/").then(response => {
       if (response.data.length > 0) {
         this.setState({
-          users: response.data.map(user => user.username)
+          users: response.data.map(user => user.username),
+          username: response.data[0].username
         });
       }
     });
@@ -59,17 +73,16 @@ export default class CreateExercises extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const exercise = {
+    const post = {
       username: this.state.username,
       description: this.state.description,
-      duration: this.state.duration,
       date: this.state.date
     };
 
-    console.log(exercise);
+    console.log(post);
 
     axios
-      .post("http://localhost:5000/exercises/add", exercise)
+      .post("http://localhost:5000/posts/update/"+this.props.match.params.id, post)
       .then(res => console.log(res.data));
 
     window.location = "/";
@@ -78,7 +91,7 @@ export default class CreateExercises extends Component {
   render() {
     return (
       <div>
-        <h3>Create New Exercise Log</h3>
+        <h3>Edit Log</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Username: </label>
@@ -109,16 +122,6 @@ export default class CreateExercises extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Duration (in minutes):</label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              value={this.state.duration}
-              onChange={this.onChangeDuration}
-            />
-          </div>
-          <div className="form-group">
             <label>Date:</label>
             <div>
               <DatePicker
@@ -131,7 +134,7 @@ export default class CreateExercises extends Component {
           <div className="form-group">
             <input
               type="submit"
-              value="Create Exercise Log"
+              value="Edit Log"
               className="btn btn-primary"
             />
           </div>

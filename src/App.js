@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Navbar from "./components/navbar.component";
-import ExercisesList from "./components/exercises-list.component";
-import EditExercise from "./components/edit-exercise.component";
-import CreateExercise from "./components/create-exercise.component";
+import PostList from "./components/list.component";
+import Edit from "./components/edit.component";
+import Create from "./components/create.component";
 import CreateUser from "./components/create-user.component";
 
 function App() {
@@ -14,9 +14,9 @@ function App() {
       <div className="container">
         <Navbar />
         <br />
-        <Route path="/" exact component={ExercisesList} />
-        <Route path="/edit/:id" component={EditExercise} />
-        <Route path="/create" exact component={CreateExercise} />
+        <Route path="/" exact component={PostList} />
+        <Route path="/edit/:id" component={Edit} />
+        <Route path="/create" exact component={Create} />
         <Route path="/user" component={CreateUser} />
       </div>
     </Router>

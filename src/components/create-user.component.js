@@ -95,8 +95,6 @@ export default class CreateUsers extends Component {
               value="Submit"
               className="btn btn-primary"
             />
-
-          //add button with onClick
           </div>
         </form>
       </div>
