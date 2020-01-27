@@ -9,7 +9,6 @@ export default class Create extends Component {
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -58,19 +57,23 @@ export default class Create extends Component {
       date: this.state.date
     };
 
-    console.log(post);
-
     axios
       .post("http://localhost:5000/posts/add", post)
       .then(res => console.log(res.data));
 
+    this.setState({
+      username: "",
+      description: ""
+    })  
+
     window.location = "/";
   }
+
 
   render() {
     return (
       <div>
-        <h3>Create New Log</h3>
+        <h3>Create New Post</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Username: </label>

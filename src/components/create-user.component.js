@@ -61,7 +61,7 @@ export default class CreateUsers extends Component {
   render() {
     return (
       <div>
-        <h3>Provide Name and Email to Participate</h3>
+        <h3>Sign Up</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Username:</label>
@@ -82,7 +82,7 @@ export default class CreateUsers extends Component {
           </div>
           
           <div className="form-group">
-            <label for="exampleTextarea">Post Question:</label>
+            <label>Post Question:</label>
             <textarea 
               className="form-control" 
               id="post-question" 
