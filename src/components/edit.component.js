@@ -91,7 +91,7 @@ export default class Edit extends Component {
   render() {
     return (
       <div>
-        <h3>Edit Log</h3>
+        <h3>Edit Post</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Username: </label>
