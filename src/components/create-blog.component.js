@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import HomeImage from "../images/newdadhome.jpeg";
-import FamImage from "../images/happyfam.jpeg";
+import Logo from "../images/newdadhome.jpeg";
 
 const Post = props => (
   <tr>
     <td>{props.post.username}</td>
+    <td>{props.post.title}</td>
     <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>
@@ -60,7 +60,7 @@ export default class postList extends Component {
   render() {
     return (
       <div>
-        <img src={HomeImage} className='img-fluid' />
+        <img src={Logo} className='img-fluid' />
         <h3>Posts</h3>
         <table className="table">
           <thead className="thead-light">
@@ -72,25 +72,36 @@ export default class postList extends Component {
             </tr>
           </thead>
           <tbody>
+            <h3 className="card-header">Card header</h3>
+            <div className="card-body">
+              <h5 className="card-title">Special title treatment</h5>
+            </div>
+            <img></img>
+            <div className="card-body">
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">Cras justo odio</li>
+              <li className="list-group-item">Dapibus ac facilisis in</li>
+              <li className="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div className="card-body">
+              <a href="#" className="card-link">Card link</a>
+              <a href="#" className="card-link">Another link</a>
+            </div>
+            <div className="card-footer text-muted">
+              2 days ago
+            </div>
 
-                <div className="card" style={{ width: '18rem' }}>
-                  <img className="card-img-top" src={FamImage} alt="Card image cap"></img>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-
-                <div className="card" style={{ width: '18rem' }}>
-                  <img className="card-img-top" src={FamImage} alt="Card image cap"></img>
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-                {this.postList()}
+          <div className="card">
+            <div className="card-body">
+              <h4 className="card-title">Card title</h4>
+              <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" className="card-link">Card link</a>
+              <a href="#" className="card-link">Another link</a>
+            </div>
+          {this.postList()}</div>
           </tbody>
         </table>
       </div >

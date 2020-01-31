@@ -8,12 +8,14 @@ export default class Create extends Component {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       username: "",
+      title: "",
       description: "",
       date: new Date(),
       users: []
@@ -36,6 +38,12 @@ export default class Create extends Component {
     });
   }
 
+  onChangeTitle(e) {
+    this.setState({
+      title: e.target.value
+    });
+  }
+
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
@@ -53,6 +61,7 @@ export default class Create extends Component {
 
     const post = {
       username: this.state.username,
+      title: this.state.title,
       description: this.state.description,
       date: this.state.date
     };
@@ -63,6 +72,7 @@ export default class Create extends Component {
 
     this.setState({
       username: "",
+      title: "",
       description: ""
     })  
 
@@ -92,6 +102,16 @@ export default class Create extends Component {
                 );
               })}
             </select>
+          </div>
+          <div className="form-group">
+            <label>Title:</label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              value={this.state.title}
+              onChange={this.onChangeTitle}
+            />
           </div>
           <div className="form-group">
             <label>Description:</label>
