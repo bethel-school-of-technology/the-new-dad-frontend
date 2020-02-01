@@ -1,0 +1,58 @@
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import HomeImage from "../images/newdadhome.jpeg";
+import FamImage from "../images/happyfam.jpeg";
+import LegoImage from "../images/legos.JPG";
+import RocksImage from "../images/rocks.jpeg";
+import BackpackImage from "../images/backpack.JPG";
+import AnkleHangImage from "../images/anklehang.jpeg";
+
+export default class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { posts: [] };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/posts/")
+      .then(response => {
+        this.setState({ posts: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
+
+  render() {
+    return (
+      <div>
+        <img src={HomeImage} className='img-fluid' />
+        <h1 className='text-center mt-5' style={{fontFamily: 'Optima'}}>THE NEW DAD BLOG</h1>
+        <table className="table">
+          <thead className="thead-light">
+          </thead>
+          <tbody>
+            <div className="containter">
+              <div className="row">
+                
+                <div className="card m-4 align-center">
+                  <img className="card-img-top" src={AnkleHangImage} alt="Card image cap"></img>
+                  <div className="card-body" style={{fontFamily: 'Optima'}}>
+                    <h5 className="card-title text-center">Learn everything about </h5>
+                    <p className="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="/blog" className="btn btn-primary center">Take me to the blogs!</a>
+                  </div>
+                </div>               
+              </div>
+            </div>
+          </tbody>
+        </table>
+      </div >
+    );
+  }
+}

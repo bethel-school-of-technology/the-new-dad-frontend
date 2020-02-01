@@ -45,7 +45,9 @@ export default class Home extends Component {
                   <div className="card-body" style={{fontFamily: 'Optima'}}>
                     <h5 className="card-title text-center">Learn everything about </h5>
                     <p className="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div className="col text-center">
                     <a href="/blog" className="btn btn-primary center">Take me to the blogs!</a>
+                    </div>
                   </div>
                 </div>               
               </div>
