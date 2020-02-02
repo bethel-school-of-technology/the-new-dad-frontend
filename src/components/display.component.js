@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import TheNewDadImage from "../images/TheNewDad.jpeg";
 import AnkleHangImage from "../images/anklehang.jpeg";
+import FlyinZion from "../images/flyinzion.jpeg";
+import DadHold from "../images/dadhold.jpeg";
 
 
 
@@ -41,8 +43,8 @@ export default class DisplayBlog extends Component {
   render() {
     console.log(this.state.post.description)
     return (
-      <div>
-        <img src={AnkleHangImage} className='img-fluid' />
+      <div style={{ fontFamily: 'Optima' }}>
+        <img src={DadHold} className='img-fluid' />
         <h1>{this.state.post.title}</h1>
         <em>By: {this.state.post.username}</em>
         <br></br>

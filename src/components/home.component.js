@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import HomeImage from "../images/newdadhome.jpeg";
 import FamImage from "../images/happyfam.jpeg";
-import LegoImage from "../images/legos.JPG";
+import Lego from "../images/lego.jpeg";
 import RocksImage from "../images/rocks.jpeg";
-import BackpackImage from "../images/backpack.JPG";
 import AnkleHangImage from "../images/anklehang.jpeg";
 
 export default class Home extends Component {
@@ -39,7 +38,6 @@ export default class Home extends Component {
           <tbody>
             <div className="containter">
               <div className="row">
-                
                 <div className="card m-4 align-center">
                   <img className="card-img-top" src={AnkleHangImage} alt="Card image cap"></img>
                   <div className="card-body" style={{fontFamily: 'Optima'}}>

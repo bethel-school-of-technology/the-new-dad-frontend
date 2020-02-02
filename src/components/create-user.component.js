@@ -51,9 +51,9 @@ export default class CreateUsers extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ fontFamily: 'Optima' }}>
         <h3>Sign Up</h3>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} >
           <div className="form-group">
             <label>Username:</label>
             <input

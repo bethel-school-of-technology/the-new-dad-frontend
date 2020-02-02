@@ -82,7 +82,7 @@ export default class Create extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ fontFamily: 'Optima' }}>
         <h3>Create New Post</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -136,7 +136,7 @@ export default class Create extends Component {
           <div className="form-group">
             <input
               type="submit"
-              value="Create Log"
+              value="Create Blog"
               className="btn btn-primary"
             />
           </div>

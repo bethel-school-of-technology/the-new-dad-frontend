@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import HomeImage from "../images/newdadhome.jpeg";
-import FamImage from "../images/happyfam.jpeg";
-import LegoImage from "../images/legos.JPG";
-import RocksImage from "../images/rocks.jpeg";
-import BackpackImage from "../images/backpack.JPG";
+import DadHold from "../images/dadhold.jpeg";
 import TheNewDadImage from "../images/TheNewDad.jpeg";
 
 
 const Blog = props => (
     
-    <div className="card m-4" style={{ width: '18rem' }}>
+    <div className="card m-4 align-center" style={{ width: '18rem' }}>
         <img className="card-img-top" src={TheNewDadImage} alt="Card image cap"></img>
-        <div className="card-body">
+        <div className="card-body" style={{ fontFamily: 'Optima' }}>
             <h5 className="card-title">{props.blog.title}</h5>
             <em className="card-text">By: {props.blog.username}</em><br></br>
             <p></p>
@@ -69,10 +65,10 @@ export default class BlogList extends Component {
         
         return (
             <div>
-                <img src={HomeImage} className='img-fluid' />
-                <h3 className='text-center mt-5'>BLOG POSTS</h3>
-                <div className="containter">
-                    <div className="row ml-5">
+                <img src={DadHold} className='img-fluid' />
+                <h1 className='text-center mt-5' style={{ fontFamily: 'Optima' }}>BLOG POSTS</h1>
+                <div className="containter ">
+                    <div className="row ml-5 align-center">
                         {this.blogList()}
                     </div>
                 </div >
