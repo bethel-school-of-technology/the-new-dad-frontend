@@ -1,20 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Logo from "../images/newdadhome.jpeg";
 
 const Post = props => (
-    <tr>
-        <td>{props.post.username}</td>
-        <td>{props.post.description}</td>
-        <td>{props.post.date.substring(0,10)}</td>
-        <td>
-            <Link to={'/edit/'+props.post._id}>edit</Link> | <a href='#' onClick={() => { props.deletePost(props.post._id)}}>delete</a>
-        </td>
-    </tr>
-)
+  <tr>
+    <td>{props.post.username}</td>
+    <td>{props.post.description}</td>
+    <td>{props.post.date.substring(0, 10)}</td>
+    <td>
+      <Link to={"/edit/" + props.post._id}>edit</Link> |{" "}
+      <a
+        href="#"
+        onClick={() => {
+          props.deletePost(props.post._id);
+        }}
+      >
+        delete
+      </a>
+      | {""}
+      <a href={"/reply/" + props.post._id} className="btn btn-primary">
+        Reply
+      </a>
+    </td>
+  </tr>
+);
 
-export default class postList extends Component {
+function refreshPage() {
+  window.location.reload();
+}
+
+export default class PostList extends Component {
   constructor(props) {
     super(props);
 
@@ -47,7 +62,7 @@ export default class postList extends Component {
   postList() {
     return this.state.posts.map(currentpost => {
       return (
-        <post
+        <Post
           post={currentpost}
           deletePost={this.deletePost}
           key={currentpost._id}
@@ -59,8 +74,12 @@ export default class postList extends Component {
   render() {
     return (
       <div>
-        <img src={Logo} className='img-fluid'/>
-        <h3>Logged Posts</h3>
+        <h1>
+          Posted Questions {""}
+          <button type="button" onClick={refreshPage}>
+            <span>Refresh</span>
+          </button>
+        </h1>
         <table className="table">
           <thead className="thead-light">
             <tr>

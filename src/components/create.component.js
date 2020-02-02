@@ -3,13 +3,12 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class Create extends Component {
+export default class CreatePosts extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -64,13 +63,13 @@ export default class Create extends Component {
       .post("http://localhost:5000/posts/add", post)
       .then(res => console.log(res.data));
 
-    window.location = "/";
+    window.location = "/forum";
   }
 
   render() {
     return (
       <div>
-        <h3>Create New Log</h3>
+        <h3>Ask a Question!</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Username: </label>
@@ -92,13 +91,11 @@ export default class Create extends Component {
           </div>
           <div className="form-group">
             <label>Description:</label>
-            <input
-              type="text"
-              required
+            <textarea
               className="form-control"
               value={this.state.description}
               onChange={this.onChangeDescription}
-            />
+            ></textarea>
           </div>
           <div className="form-group">
             <label>Date:</label>
@@ -113,7 +110,7 @@ export default class Create extends Component {
           <div className="form-group">
             <input
               type="submit"
-              value="Create Log"
+              value="Ask Your Question!"
               className="btn btn-primary"
             />
           </div>

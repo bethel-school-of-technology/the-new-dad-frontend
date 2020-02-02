@@ -9,7 +9,6 @@ export default class Edit extends Component {
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -28,7 +27,6 @@ export default class Edit extends Component {
         this.setState({
           username: response.data.username,
           description: response.data.description,
-          duration: response.data.duration,
           date: new Date(response.data.date)
         });
       })
@@ -58,12 +56,6 @@ export default class Edit extends Component {
     });
   }
 
-  onChangeDuration(e) {
-    this.setState({
-      duration: e.target.value
-    });
-  }
-
   onChangeDate(date) {
     this.setState({
       date: date
@@ -82,10 +74,13 @@ export default class Edit extends Component {
     console.log(post);
 
     axios
-      .post("http://localhost:5000/posts/update/"+this.props.match.params.id, post)
+      .post(
+        "http://localhost:5000/posts/update/" + this.props.match.params.id,
+        post
+      )
       .then(res => console.log(res.data));
 
-    window.location = "/";
+    window.location = "/forum";
   }
 
   render() {
@@ -134,7 +129,7 @@ export default class Edit extends Component {
           <div className="form-group">
             <input
               type="submit"
-              value="Edit Log"
+              value="Edit Question"
               className="btn btn-primary"
             />
           </div>
