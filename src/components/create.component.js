@@ -76,7 +76,7 @@ export default class Create extends Component {
       description: ""
     })  
 
-    window.location = "/";
+    window.location = "/blog";
   }
 
 

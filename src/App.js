@@ -4,13 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Navbar from "./components/navbar.component";
 import Login from './components/login'
-import PostList from "./components/home.component";
 import Edit from "./components/edit.component";
 import Create from "./components/create.component";
-import CreateUser from "./components/create-user.component";
+import CreateUsers from "./components/create-user";
 import BlogList from "./components/blog-list.component";
 import Display from "./components/display.component";
 import AdminBlogList from "./components/admin-blog-list.component";
+import Home from "./components/home.component";
 
 
 function App() {
@@ -19,10 +19,10 @@ function App() {
       <div className="container">
         <Navbar />
         <br />
-        <Route path="/" exact component={PostList} />
+        <Route path="/" exact component={Home} />
         <Route path="/edit/:id" component={Edit} />
         <Route path="/create" exact component={Create} />
-        <Route path="/user" component={CreateUser} />
+        <Route path="/user" component={CreateUsers} />
         <Route path="/login" component={Login} />
         <Route path="/blog" component={BlogList} />
         <Route path="/display/:id" component={Display} />

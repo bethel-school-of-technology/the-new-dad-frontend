@@ -32,10 +32,10 @@ export default class Home extends Component {
           <thead className="thead-light">
           </thead>
           <tbody>
-            <div className="containter">
+            <div className="container">
               <div className="row">
                 <div className="card m-4 align-center">
-                  <img className="card-top" src={AnkleHangImage} alt="Card-cap"></img>
+                  <img className="card-top img-fluid" src={AnkleHangImage} alt="Card-cap"></img>
                   <div className="card-body" style={{fontFamily: 'Optima'}}>
                     <h5 className="card-title text-center">Learn everything about </h5>
                     <p className="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

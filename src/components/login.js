@@ -49,7 +49,7 @@ export default class Create extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ fontFamily: "optima"}}>
         <h3>Login</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">

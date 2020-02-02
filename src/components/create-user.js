@@ -60,7 +60,7 @@ export default class CreateUsers extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ fontFamily: 'Optima' }}>
         <h3>Create an Account</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -80,7 +80,6 @@ export default class CreateUsers extends Component {
               value={this.state.email}
               onChange={this.onChangeEmail}
             />
-
             <label>Password:</label>
             <input
               type="text"
@@ -90,7 +89,6 @@ export default class CreateUsers extends Component {
               onChange={this.onChangePassword}
             />
           </div>
-
           <div className="form-group">
             <input type="submit" value="Submit" className="btn btn-primary" />
           </div>
