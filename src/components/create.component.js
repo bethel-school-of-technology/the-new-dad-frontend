@@ -3,7 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class Create extends Component {
+export default class CreatePosts extends Component {
   constructor(props) {
     super(props);
 
@@ -70,6 +70,7 @@ export default class Create extends Component {
       .post("http://localhost:5000/posts/add", post)
       .then(res => console.log(res.data));
 
+<<<<<<< HEAD
     this.setState({
       username: "",
       title: "",
@@ -77,13 +78,21 @@ export default class Create extends Component {
     })  
 
     window.location = "/blog";
+=======
+    window.location = "/forum";
+>>>>>>> nathansbranch
   }
 
 
   render() {
     return (
+<<<<<<< HEAD
       <div style={{ fontFamily: 'Optima' }}>
         <h3>Create New Post</h3>
+=======
+      <div>
+        <h3>Ask a Question!</h3>
+>>>>>>> nathansbranch
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Username: </label>
@@ -115,13 +124,11 @@ export default class Create extends Component {
           </div>
           <div className="form-group">
             <label>Description:</label>
-            <input
-              type="text"
-              required
+            <textarea
               className="form-control"
               value={this.state.description}
               onChange={this.onChangeDescription}
-            />
+            ></textarea>
           </div>
           <div className="form-group">
             <label>Date:</label>
@@ -136,7 +143,11 @@ export default class Create extends Component {
           <div className="form-group">
             <input
               type="submit"
+<<<<<<< HEAD
               value="Create Blog"
+=======
+              value="Ask Your Question!"
+>>>>>>> nathansbranch
               className="btn btn-primary"
             />
           </div>

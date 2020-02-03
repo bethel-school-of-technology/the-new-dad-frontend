@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import axios from "axios";
 import HomeImage from "../images/newdadhome.jpeg";
 import AnkleHangImage from "../images/anklehang.jpeg";
+=======
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Logo from "../images/newdadhome.jpeg";
+>>>>>>> nathansbranch
 
 export default class Home extends Component {
   constructor(props) {
@@ -21,6 +27,7 @@ export default class Home extends Component {
       });
   }
 
+<<<<<<< HEAD
 
 
   render() {
@@ -49,6 +56,24 @@ export default class Home extends Component {
           </tbody>
         </table>
       </div >
+=======
+  render() {
+    return (
+      <div>
+        <img src={Logo} className="img-fluid" />
+        <h3>Logged Posts</h3>
+        <table className="table">
+          <thead className="thead-light">
+            <tr>
+              <th>Username</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+>>>>>>> nathansbranch
     );
   }
 }

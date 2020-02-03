@@ -140,7 +140,7 @@ export default class Edit extends Component {
           <div className="form-group">
             <input
               type="submit"
-              value="Edit Log"
+              value="Edit Question"
               className="btn btn-primary"
             />
           </div>
