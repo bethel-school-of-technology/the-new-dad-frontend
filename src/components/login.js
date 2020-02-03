@@ -63,7 +63,7 @@ export default class Create extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Description:</label>
+            <label>Password:</label>
             <input
               type="text"
               required

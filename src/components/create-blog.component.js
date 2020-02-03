@@ -3,7 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class Create extends Component {
+export default class CreateBlog extends Component {
   constructor(props) {
     super(props);
 
