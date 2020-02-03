@@ -9,7 +9,10 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "google-map-react": "^1.1.5",
+<<<<<<< HEAD
     "mongodb": "^3.5.2",
+=======
+>>>>>>> 004661b297ff2d5cd524ba1641c3057da7712228
     "nodemon": "^2.0.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
