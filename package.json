@@ -1,17 +1,21 @@
 {
-  "name": "mern-exercise-tracker",
+  "name": "the-new-dad",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "moment": "^2.24.0",
     "nodemon": "^2.0.2",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-datepicker": "^2.11.0",
     "react-dom": "^16.12.0",
+    "react-render-html": "^0.6.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "reactstrap": "^8.4.0"
@@ -36,5 +40,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bethel-school-of-technology/the-new-dad-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bethel-school-of-technology/the-new-dad-frontend/issues"
+  },
+  "homepage": "https://github.com/bethel-school-of-technology/the-new-dad-frontend#readme"
 }

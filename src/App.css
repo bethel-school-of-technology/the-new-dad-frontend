@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.post-body {
+  margin: 1em 20%;
+}
+
+@media(max-width: 900px) {
+  .post-body {
+    margin: 1em;
+  }
+}

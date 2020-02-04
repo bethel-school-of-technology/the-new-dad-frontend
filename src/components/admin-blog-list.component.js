@@ -17,15 +17,27 @@ const Post = props => (
       >
         delete
       </a>
+      | {""}
+      <a href={"/reply/" + props.post._id} className="btn btn-primary">
+        Reply
+      </a>
     </td>
   </tr>
 );
+
+function refreshPage() {
+  window.location.reload();
+}
+
 export default class blogList extends Component {
   constructor(props) {
     super(props);
+
     this.deletePost = this.deletePost.bind(this);
+
     this.state = { posts: [] };
   }
+
   componentDidMount() {
     axios
       .get("http://localhost:5000/posts/")
@@ -55,6 +67,7 @@ export default class blogList extends Component {
       );
     });
   }
+
   render() {
     return (
       <div style={{ fontFamily: "optima" }}>
@@ -69,7 +82,6 @@ export default class blogList extends Component {
           </thead>
           <tbody>{this.blogList()}</tbody>
         </table>
-      </div>
-    );
-  }
-}
+        </div>
+)}
+    };

@@ -59,6 +59,10 @@ export default class CreatePosts extends Component {
     axios
       .post("http://localhost:5000/posts/add", post)
       .then(res => console.log(res.data));
+<<<<<<< HEAD:src/components/create-post.component.js
+=======
+    window.location = "/forum";
+>>>>>>> origin/developmentbranch:src/components/create-posts.component.js
   }
   render() {
     return (

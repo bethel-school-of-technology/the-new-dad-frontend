@@ -6,7 +6,7 @@ import Navbar from "./components/navbar.component";
 import Login from './components/login.components'
 import Edit from "./components/edit.component";
 import CreateBlog from "./components/create-blog.component";
-import CreatePosts from "./components/create-post.component";
+import CreatePosts from "./components/create-posts.component";
 import CreateUsers from "./components/create-user.components";
 import BlogList from "./components/blog-list.component";
 import Display from "./components/display.component";
