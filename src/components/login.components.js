@@ -1,3 +1,4 @@
+  
 import React, { Component } from "react";
 import axios from "axios";
 
@@ -49,7 +50,7 @@ export default class Create extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ fontFamily: "optima"}}>
         <h3>Login</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -63,7 +64,7 @@ export default class Create extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Description:</label>
+            <label>Password:</label>
             <input
               type="text"
               required

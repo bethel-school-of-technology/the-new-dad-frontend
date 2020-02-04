@@ -3,17 +3,19 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class Create extends Component {
+export default class CreateBlog extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       username: "",
+      title: "",
       description: "",
       date: new Date(),
       users: []
@@ -24,8 +26,7 @@ export default class Create extends Component {
     axios.get("http://localhost:5000/users/").then(response => {
       if (response.data.length > 0) {
         this.setState({
-          users: response.data.map(user => user.username),
-          username: response.data[0].username
+          users: response.data.map(user => user.username)
         });
       }
     });
@@ -34,6 +35,12 @@ export default class Create extends Component {
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
+    });
+  }
+
+  onChangeTitle(e) {
+    this.setState({
+      title: e.target.value
     });
   }
 
@@ -54,6 +61,7 @@ export default class Create extends Component {
 
     const post = {
       username: this.state.username,
+      title: this.state.title,
       description: this.state.description,
       date: this.state.date
     };
@@ -64,15 +72,17 @@ export default class Create extends Component {
 
     this.setState({
       username: "",
+      title: "",
       description: ""
-    });
+    })  
 
-    window.location = "/";
+    window.location = "/blog";
   }
+
 
   render() {
     return (
-      <div>
+      <div style={{ fontFamily: 'Optima' }}>
         <h3>Create New Post</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -94,14 +104,22 @@ export default class Create extends Component {
             </select>
           </div>
           <div className="form-group">
-            <label>Description:</label>
+            <label>Title:</label>
             <input
               type="text"
               required
               className="form-control"
+              value={this.state.title}
+              onChange={this.onChangeTitle}
+            />
+          </div>
+          <div className="form-group">
+            <label>Description:</label>
+            <textarea
+              className="form-control"
               value={this.state.description}
               onChange={this.onChangeDescription}
-            />
+            ></textarea>
           </div>
           <div className="form-group">
             <label>Date:</label>
@@ -116,7 +134,7 @@ export default class Create extends Component {
           <div className="form-group">
             <input
               type="submit"
-              value="Create Log"
+              value="Create Blog"
               className="btn btn-primary"
             />
           </div>

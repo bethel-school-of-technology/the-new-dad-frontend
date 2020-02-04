@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import HomeImage from "../images/newdadhome.jpeg";
-import FamImage from "../images/happyfam.jpeg";
 
 const Post = props => (
   <tr>
@@ -10,10 +8,26 @@ const Post = props => (
     <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>
-      <Link to={'/edit/' + props.post._id}>edit</Link> | <a href='#' onClick={() => { props.deletePost(props.post._id) }}>delete</a>
+      <Link to={"/edit/" + props.post._id}>edit</Link> |{" "}
+      <a
+        href="#"
+        onClick={() => {
+          props.deletePost(props.post._id);
+        }}
+      >
+        delete
+      </a>
+      | {""}
+      <a href={"/reply/" + props.post._id} className="btn btn-primary">
+        Reply
+      </a>
     </td>
   </tr>
-)
+);
+
+function refreshPage() {
+  window.location.reload();
+}
 
 export default class PostList extends Component {
   constructor(props) {
@@ -60,8 +74,12 @@ export default class PostList extends Component {
   render() {
     return (
       <div>
-        <img src={HomeImage} className='img-fluid' />
-        <h3>Posts</h3>
+        <h1>
+          Posted Questions {""}
+          <button type="button" onClick={refreshPage}>
+            <span>Refresh</span>
+          </button>
+        </h1>
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -71,11 +89,9 @@ export default class PostList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-
-          </tbody>
+          <tbody>{this.postList()}</tbody>
         </table>
-      </div >
+      </div>
     );
   }
 }
