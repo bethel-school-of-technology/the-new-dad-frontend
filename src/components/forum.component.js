@@ -5,6 +5,7 @@ import axios from "axios";
 const Post = props => (
   <tr>
     <td>{props.post.username}</td>
+    <td>{props.post.title}</td>
     <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>
@@ -29,7 +30,7 @@ function refreshPage() {
   window.location.reload();
 }
 
-export default class PostList extends Component {
+export default class blogList extends Component {
   constructor(props) {
     super(props);
 
@@ -59,7 +60,7 @@ export default class PostList extends Component {
     });
   }
 
-  postList() {
+  blogList() {
     return this.state.posts.map(currentpost => {
       return (
         <Post
@@ -70,9 +71,9 @@ export default class PostList extends Component {
       );
     });
   }
-
   render() {
     return (
+
       <div>
         <h1>
           Posted Questions {""}
@@ -82,6 +83,19 @@ export default class PostList extends Component {
         </h1>
         <table className="table">
           <thead className="thead-light">
+          <th>Name</th>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Date</th>
+          <th></th>
+          </thead>
+         
+          <tbody>
+              {this.blogList()}
+          </tbody>
+          </table>
+        <table className="table">
+          <thead className="thead-light">
             <tr>
               <th>Username</th>
               <th>Description</th>
@@ -89,9 +103,10 @@ export default class PostList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>{this.postList()}</tbody>
+       
+
         </table>
       </div>
-    );
-  }
+    )};
 }
+

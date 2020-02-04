@@ -33,13 +33,8 @@ export default class Navbar extends Component {
                 </a>
               </li>
               <li className="navbar-item">
-                <Link to="/create" className="nav-link">
+                <Link to="/createposts" className="nav-link">
                   Post Question
-                </Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/user" className="nav-link">
-                  Ask Us
                 </Link>
               </li>
               <li className="navbar-item">
