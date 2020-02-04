@@ -71,7 +71,6 @@ export default class blogList extends Component {
       );
     });
   }
-
   render() {
     return (
 
@@ -90,7 +89,7 @@ export default class blogList extends Component {
           <th>Date</th>
           <th></th>
           </thead>
-          <tbody>{this.postList()}</tbody>
+         
           <tbody>
               {this.blogList()}
           </tbody>
@@ -104,7 +103,7 @@ export default class blogList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>{this.postList()}</tbody>
+       
 
         </table>
       </div>
