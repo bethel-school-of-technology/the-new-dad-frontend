@@ -5,6 +5,7 @@ import axios from "axios";
 const Post = props => (
   <tr>
     <td>{props.post.username}</td>
+    <td>{props.post.title}</td>
     <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>
@@ -84,7 +85,9 @@ export default class PostList extends Component {
           <thead className="thead-light">
             <tr>
               <th>Username</th>
+              <th>Title</th>
               <th>Description</th>
+
               <th>Date</th>
               <th>Actions</th>
             </tr>
