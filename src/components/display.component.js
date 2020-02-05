@@ -10,7 +10,7 @@ export default class DisplayBlog extends Component {
       super(props);
 
       this.state = {
-        post: {
+        blog: {
           username: "",
           title: "",
           description: "",
@@ -21,9 +21,9 @@ export default class DisplayBlog extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/posts/" + this.props.match.params.id)
+      .get("http://localhost:5000/blogs/" + this.props.match.params.id)
       .then(response => {
-        this.setState({ post: {
+        this.setState({ blog: {
             username: response.data.username,
             title: response.data.title,
             description: response.data.description,
@@ -37,15 +37,14 @@ export default class DisplayBlog extends Component {
   }
 
   render() {
-    console.log(this.state.post.description)
     return (
       <div style={{ fontFamily: 'Optima' }}>
         <img src={DadHold} className='img-fluid' alt="banner" />
-        <h1>{this.state.post.title}</h1>
-        <em>By: {this.state.post.username}</em>
+        <h1>{this.state.blog.title}</h1>
+        <em>By: {this.state.blog.username}</em>
         <br></br>
         <p>
-          {this.state.post.description}
+          {this.state.blog.description}
           </p>
       </div>
     );

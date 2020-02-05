@@ -6,11 +6,13 @@ import "react-datepicker/dist/react-datepicker.css";
 export default class CreatePosts extends Component {
   constructor(props) {
     super(props);
+
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       username: "",
       title: "",
@@ -19,6 +21,7 @@ export default class CreatePosts extends Component {
       users: []
     };
   }
+
   componentDidMount() {
     axios.get("http://localhost:5000/users/").then(response => {
       if (response.data.length > 0) {
@@ -28,42 +31,51 @@ export default class CreatePosts extends Component {
       }
     });
   }
+
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
     });
   }
+
   onChangeTitle(e) {
     this.setState({
       title: e.target.value
     });
   }
+
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
     });
   }
+
   onChangeDate(date) {
     this.setState({
       date: date
     });
   }
+  
   onSubmit(e) {
     e.preventDefault();
+
     const post = {
       username: this.state.username,
       title: this.state.title,
       description: this.state.description,
       date: this.state.date
     };
+
     axios
       .post("http://localhost:5000/posts/add", post)
       .then(res => console.log(res.data));
+
     window.location = "/forum";
   }
+
   render() {
     return (
-      <div>
+      <div style={{ fontFamily: 'Optima' }}>
         <h3>Ask a Question!</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">

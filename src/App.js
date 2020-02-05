@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/navbar.component";
 import Login from './components/login.components'
 import Edit from "./components/edit.component";
-import CreateBlog from "./components/create-blog.component";
+import CreateBlogs from "./components/create-blog.component";
 import CreatePosts from "./components/create-posts.component";
 import CreateUsers from "./components/create-user.components";
 import BlogList from "./components/blog-list.component";
@@ -26,14 +26,12 @@ function App() {
         <br />
         <Route path="/" exact component={Home} />
         <Route path="/edit/:id" component={Edit} />
-        <Route path="/createblog" exact component={CreateBlog} />
+        <Route path="/createblog" exact component={CreateBlogs} />
         <Route path="/user" component={CreateUsers} />
         <Route path="/login" component={Login} />
         <Route path="/blog" component={BlogList} />
         <Route path="/display/:id" component={Display} />
         <Route path="/adminbloglist" component={AdminBlogList} />
-        <Route path="/" exact component={Home} />
-        <Route path="/edit/:id" component={Edit} />
         <Route path="/createposts" exact component={CreatePosts} />
         <Route path="/forum" component={Forum} />
         <Route path="/reply/:id" component={Reply} />

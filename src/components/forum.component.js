@@ -5,6 +5,7 @@ import axios from "axios";
 const Post = props => (
   <tr>
     <td>{props.post.username}</td>
+    <td>{props.post.title}</td>
     <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>
@@ -32,12 +33,9 @@ function refreshPage() {
 export default class PostList extends Component {
   constructor(props) {
     super(props);
-
     this.deletePost = this.deletePost.bind(this);
-
     this.state = { posts: [] };
   }
-
   componentDidMount() {
     axios
       .get("http://localhost:5000/posts/")
@@ -48,17 +46,14 @@ export default class PostList extends Component {
         console.log(error);
       });
   }
-
   deletePost(id) {
     axios
       .delete("http://localhost:5000/posts/" + id)
       .then(res => console.log(res.data));
-
     this.setState({
       posts: this.state.posts.filter(el => el._id !== id)
     });
   }
-
   postList() {
     return this.state.posts.map(currentpost => {
       return (
@@ -84,6 +79,7 @@ export default class PostList extends Component {
           <thead className="thead-light">
             <tr>
               <th>Username</th>
+              <th>Title</th>
               <th>Description</th>
               <th>Date</th>
               <th>Actions</th>

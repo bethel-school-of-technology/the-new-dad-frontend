@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class Reply extends Component {
@@ -10,6 +8,7 @@ export default class Reply extends Component {
     this.state = {
       post: {
         username: "",
+        title: "",
         description: "",
         date: new Date()
       }
@@ -22,6 +21,7 @@ export default class Reply extends Component {
         this.setState({
           post: {
             username: response.data.username,
+            title: response.data.title,
             description: response.data.description,
             date: new Date(response.data.date)
           }
@@ -31,58 +31,75 @@ export default class Reply extends Component {
         console.log(error);
       });
   }
-
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
     });
   }
-
+  onChangeTitle(e) {
+    this.setState({
+      title: e.target.value
+    });
+  }
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
     });
   }
-
   onChangeDate(date) {
     this.setState({
       date: date
     });
   }
-
   onSubmit(e) {
     e.preventDefault();
-
-    const reply = {
+    const post = {
       username: this.state.username,
+      title: this.state.title,
       description: this.state.description,
       date: this.state.date
     };
-
-    console.log(reply);
-
+    console.log(post);
     axios
-      .post("http://localhost:5000/replies/add", reply)
+      .post("http://localhost:5000/replies/add", post)
       .then(res => console.log(res.data));
-
     window.location = "/forum";
   }
   render() {
     return (
       <div>
         <p>
-          <h3>Posted By:</h3>
-        </p>
-        <h2>{this.state.post.username}</h2>
-        <br></br>
-        <p>
-          <h3>Original Question</h3>
-          <em>
-            <h2>{this.state.post.description}</h2>
-          </em>
+          <h1>Reply to the Question!</h1>
           <br />
+          <h3>
+            Posted By:{" "}
+            <em style={{ color: "blue" }}>{this.state.post.username}</em>
+          </h3>
         </p>
-        <h3>Reply:</h3> <textarea></textarea>
+        <p>
+          <h3>
+            Title: <em style={{ color: "blue" }}>{this.state.post.title}</em>
+          </h3>
+        </p>
+        <p>
+          <h3>
+            Original Question:{" "}
+            <em style={{ color: "blue" }}>{this.state.post.description}</em>
+          </h3>
+        </p>
+        <h3>Reply:</h3>{" "}
+        <form className="textArea" onSubmit={this.onSubmit}>
+          <textarea
+            name="text"
+            cols="50"
+            rows="3"
+            maxlength="280"
+            placeholder="Start typing here!"
+            onKeyDown={this.onEnterPress}
+          ></textarea>
+          <br />
+          <input type="submit" value="Submit!" className="btn btn-primary" />
+        </form>
       </div>
     );
   }

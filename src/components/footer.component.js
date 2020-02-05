@@ -8,23 +8,23 @@ function Footer({ children }) {
         <div className="row">
           {/* Column 1 */}
           <div className="col-md-4 col-sm-6">
-            <h4>Lorem ipsum</h4>
+            <h4></h4>
             <ul className="list-unstyled">
-              <li>Lorem ispum</li>
+              <li></li>
             </ul>
           </div>
           {/* Column 2 */}
           <div className="col-md-4 col-sm-6">
-            <h4>Lorem ipsum</h4>
+            <h4></h4>
             <ul className="list-unstyled">
-              <li>Lorem ispum</li>
+              <li></li>
             </ul>
           </div>
           {/* Column 3 */}
           <div className="col-md-4 col-sm-6">
-            <h4>Lorem ipsum</h4>
+            <h4></h4>
             <ul className="list-unstyled">
-              <li>Lorem ispum</li>
+              <li></li>
             </ul>
           </div>
         </div>
