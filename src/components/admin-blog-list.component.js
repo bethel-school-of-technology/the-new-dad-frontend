@@ -12,7 +12,11 @@ const Blog = props => (
       <Link to={'/edit/' + props.blog._id}>edit</Link> | <a href='#' onClick={() => { props.deleteBlog(props.blog._id) }}>delete</a>
     </td>
   </tr>
-)
+);
+
+function refreshPage() {
+  window.location.reload();
+}
 
 export default class blogList extends Component {
   constructor(props) {
@@ -38,12 +42,10 @@ export default class blogList extends Component {
     axios
       .delete("http://localhost:5000/blogs/" + id)
       .then(res => console.log(res.data));
-
     this.setState({
       blogs: this.state.blogs.filter(el => el._id !== id)
     });
   }
-
   blogList() {
     return this.state.blogs.map(currentblog => {
       return (
@@ -58,21 +60,18 @@ export default class blogList extends Component {
 
   render() {
     return (
-      <div style={{ fontFamily: "optima"}}>
+      <div style={{ fontFamily: "optima" }}>
         <h1>Admin Blog List</h1>
         <table className="table">
           <thead className="thead-light">
-          <th>Name</th>
-          <th>Title</th>
-          <th>Body</th>
-          <th>Date</th>
-          <th></th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Date</th>
+            <th></th>
           </thead>
-          <tbody>
-              {this.blogList()}
-          </tbody>
+          <tbody>{this.blogList()}</tbody>
         </table>
-      </div >
-    );
-  }
-}
+        </div>
+)}
+    };

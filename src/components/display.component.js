@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DadHold from "../images/dadhold.jpeg";
-
-
-
 export default class DisplayBlog extends Component {
-
     constructor(props) {
       super(props);
-
       this.state = {
         blog: {
           username: "",
@@ -18,7 +13,6 @@ export default class DisplayBlog extends Component {
         }
       };
   }
-
   componentDidMount() {
     axios
       .get("http://localhost:5000/blogs/" + this.props.match.params.id)
@@ -35,7 +29,6 @@ export default class DisplayBlog extends Component {
         console.log(error);
       });
   }
-
   render() {
     return (
       <div style={{ fontFamily: 'Optima' }}>
@@ -49,5 +42,9 @@ export default class DisplayBlog extends Component {
       </div>
     );
   }
-
 }
+
+
+
+
+

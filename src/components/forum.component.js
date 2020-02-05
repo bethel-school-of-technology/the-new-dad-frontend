@@ -30,7 +30,7 @@ function refreshPage() {
   window.location.reload();
 }
 
-export default class PostList extends Component {
+export default class blogList extends Component {
   constructor(props) {
     super(props);
     this.deletePost = this.deletePost.bind(this);
@@ -65,9 +65,9 @@ export default class PostList extends Component {
       );
     });
   }
-
   render() {
     return (
+
       <div>
         <h1>
           Posted Questions {""}
@@ -75,6 +75,19 @@ export default class PostList extends Component {
             <span>Refresh</span>
           </button>
         </h1>
+        <table className="table">
+          <thead className="thead-light">
+          <th>Name</th>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Date</th>
+          <th></th>
+          </thead>
+         
+          <tbody>
+              {this.postList()}
+          </tbody>
+          </table>
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -85,7 +98,8 @@ export default class PostList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>{this.postList()}</tbody>
+       
+
         </table>
       </div>
     );
