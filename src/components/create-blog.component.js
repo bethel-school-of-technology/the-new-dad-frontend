@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-export default class CreateBlog extends Component {
+export default class CreateBlogs extends Component {
   constructor(props) {
     super(props);
     this.onChangeUsername = this.onChangeUsername.bind(this);
@@ -50,29 +49,24 @@ export default class CreateBlog extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    const post = {
+    const blog = {
       username: this.state.username,
       title: this.state.title,
       description: this.state.description,
       date: this.state.date
     };
     axios
-      .post("http://localhost:5000/posts/add", post)
+      .post("http://localhost:5000/blogs/add", blog)
       .then(res => console.log(res.data));
-    this.setState({
-      username: "",
-      title: "",
-      description: ""
-    });
     window.location = "/blog";
   }
   render() {
     return (
       <div style={{ fontFamily: "Optima" }}>
-        <h3>Create New Post</h3>
+        <h3>Create New Blog</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username: </label>
+            <label>Name: </label>
             <select
               ref="userInput"
               required
@@ -100,7 +94,7 @@ export default class CreateBlog extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Description:</label>
+            <label>Body:</label>
             <textarea
               className="form-control"
               value={this.state.description}

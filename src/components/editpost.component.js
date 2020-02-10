@@ -3,16 +3,14 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class Edit extends Component {
+export default class EditPost extends Component {
   constructor(props) {
     super(props);
-
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
     this.state = {
       username: "",
       title: "",
@@ -21,7 +19,6 @@ export default class Edit extends Component {
       users: []
     };
   }
-
   componentDidMount() {
     axios
       .get("http://localhost:5000/posts/" + this.props.match.params.id)
@@ -36,7 +33,6 @@ export default class Edit extends Component {
       .catch(function(error) {
         console.log(error);
       });
-
     axios.get("http://localhost:5000/users/").then(response => {
       if (response.data.length > 0) {
         this.setState({
@@ -46,53 +42,43 @@ export default class Edit extends Component {
       }
     });
   }
-
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
     });
   }
-
   onChangeTitle(e) {
     this.setState({
       title: e.target.value
     });
   }
-
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
     });
   }
-
   onChangeDate(date) {
     this.setState({
       date: date
     });
   }
-
   onSubmit(e) {
     e.preventDefault();
-
     const post = {
       username: this.state.username,
       title: this.state.title,
       description: this.state.description,
       date: this.state.date
     };
-
     console.log(post);
-
     axios
-      .post(
+      .put(
         "http://localhost:5000/posts/update/" + this.props.match.params.id,
         post
       )
       .then(res => console.log(res.data));
-
-    window.location = "/forum";
+    window.location = "/";
   }
-
   render() {
     return (
       <div>
