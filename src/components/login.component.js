@@ -1,31 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class CreateUsers extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       username: "",
-      email: "",
-      password: "",
+      password: ""
     };
   }
 
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
-    });
-  }
-
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value
     });
   }
 
@@ -38,33 +30,36 @@ export default class CreateUsers extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const user = {
+    const login = {
       username: this.state.username,
-      email: this.state.email,
       password: this.state.password
     };
 
     axios
-      .post("http://localhost:5000/users/add", user)
-      .then(res => console.log(res.data));
-
-    //abstraction*
-
-    this.setState({
-      username: "",
-      email: "",
-      post: "",
-      password: ""
-    });
-  }
+      .post("http://localhost:5000/users/login", login)
+      .then(response => {
+          if (response.data === "Wrong password") {
+            console.log(response);
+            alert('Invalid password! Please try again.');
+          } if (response.data !== "Wrong password" && response.status === 200) {
+            console.log(response);
+            alert('You are logged in!')
+            this.props.history.push("/");
+          }
+          })
+      .catch(error => {
+        console.log('Login Error:', error)
+        alert('Invalid username or password, please try again!'); 
+      })
+  } 
 
   render() {
     return (
-      <div style={{ fontFamily: 'Optima' }}>
-        <h3>Create an Account</h3>
+      <div style={{ fontFamily: "optima"}}>
+        <h3>Login</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username:</label>
+            <label>Username: </label>
             <input
               type="text"
               required
@@ -72,17 +67,11 @@ export default class CreateUsers extends Component {
               value={this.state.username}
               onChange={this.onChangeUsername}
             />
-            <label>Email:</label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              value={this.state.email}
-              onChange={this.onChangeEmail}
-            />
+          </div>
+          <div className="form-group">
             <label>Password:</label>
             <input
-              type="text"
+              type="password"
               required
               className="form-control"
               value={this.state.password}
@@ -90,7 +79,7 @@ export default class CreateUsers extends Component {
             />
           </div>
           <div className="form-group">
-            <input type="submit" value="Submit" className="btn btn-primary" />
+            <input type="submit" value="Login" className="btn btn-primary" />
           </div>
         </form>
       </div>

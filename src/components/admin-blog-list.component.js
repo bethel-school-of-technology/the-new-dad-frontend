@@ -9,7 +9,7 @@ const Blog = props => (
     <td>{props.blog.description}</td>
     <td>{props.blog.date.substring(0, 10)}</td>
     <td>
-      <Link to={'/edit/' + props.blog._id}>edit</Link> | <a href='#' onClick={() => { props.deleteBlog(props.blog._id) }}>delete</a>
+      <Link to={'/editblog/' + props.blog._id}>edit</Link> | <a href='#' onClick={() => { props.deleteBlog(props.blog._id) }}>delete</a>
     </td>
   </tr>
 )
@@ -24,6 +24,8 @@ export default class blogList extends Component {
   }
 
   componentDidMount() {
+    console.log(process.env);
+
     axios
       .get("http://localhost:5000/blogs/")
       .then(response => {

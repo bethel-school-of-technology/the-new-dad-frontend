@@ -1,23 +1,31 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class Create extends Component {
+export default class CreateUsers extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       username: "",
-      password: ""
+      email: "",
+      password: "",
     };
   }
 
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
+    });
+  }
+
+  onChangeEmail(e) {
+    this.setState({
+      email: e.target.value
     });
   }
 
@@ -30,30 +38,37 @@ export default class Create extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const login = {
+    const user = {
       username: this.state.username,
+      email: this.state.email,
       password: this.state.password
     };
 
     axios
-      .post("http://localhost:5000/users/login", login)
-      .then(res => console.log(res));
+      .post("http://localhost:5000/users/add", user)
+      .then(res => {
+        if (res.status === 200) {
+          console.log('User Created!');
+        this.props.history.push("/usercreated");
+      }})
+      .catch(err => alert('User and/or email already exists! Please try again.'));
 
     this.setState({
       username: "",
+      email: "",
+      post: "",
       password: ""
     });
-
-    window.location = "/";
   }
 
   render() {
+
     return (
-      <div style={{ fontFamily: "optima"}}>
-        <h3>Login</h3>
+      <div style={{ fontFamily: 'Optima' }}>
+        <h3>Create an Account</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username: </label>
+            <label>Username:</label>
             <input
               type="text"
               required
@@ -61,23 +76,28 @@ export default class Create extends Component {
               value={this.state.username}
               onChange={this.onChangeUsername}
             />
-          </div>
-          <div className="form-group">
-            <label>Password:</label>
+            <label>Email:</label>
             <input
               type="text"
+              required
+              className="form-control"
+              value={this.state.email}
+              onChange={this.onChangeEmail}
+            />
+            <label>Password:</label>
+            <input
+              type="password"
               required
               className="form-control"
               value={this.state.password}
               onChange={this.onChangePassword}
             />
           </div>
-
           <div className="form-group">
-            <input type="submit" value="Login" className="btn btn-primary" />
+            <input type="submit" value="Submit" className="btn btn-primary" />
           </div>
         </form>
       </div>
     );
+    }
   }
-}

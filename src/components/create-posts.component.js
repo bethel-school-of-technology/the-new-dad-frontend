@@ -65,12 +65,14 @@ export default class CreatePosts extends Component {
       description: this.state.description,
       date: this.state.date
     };
-
     axios
       .post("http://localhost:5000/posts/add", post)
-      .then(res => console.log(res.data));
-
-    window.location = "/forum";
+      .then(res => {
+        if (res.status === 200) {
+          console.log('Post Created!');
+        this.props.history.push("/forum");
+      }})
+      .catch(err => alert('Oops! Something went wrong, please try again!'));
   }
 
   render() {

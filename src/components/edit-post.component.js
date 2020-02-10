@@ -3,9 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
-
-export default class Edit extends Component {
+export default class EditPost extends Component {
   constructor(props) {
     super(props);
 
@@ -28,6 +26,7 @@ export default class Edit extends Component {
     axios
       .get("http://localhost:5000/posts/" + this.props.match.params.id)
       .then(response => {
+        console.log(response.data);
         this.setState({
           username: response.data.username,
           title: response.data.title,
@@ -39,17 +38,9 @@ export default class Edit extends Component {
         console.log(error);
       });
 
-    axios.get("http://localhost:5000/users/").then(response => {
-      if (response.data.length > 0) {
-        this.setState({
-          users: response.data.map(user => user.username),
-          username: response.data[0].username
-        });
-      }
-    });
+    // axios.get("http://localhost:5000/users/").then(res => console.log(res.data));
   }
-
-
+  
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
@@ -87,10 +78,16 @@ export default class Edit extends Component {
     console.log(post);
 
     axios
-      .post("http://localhost:5000/posts/update/"+this.props.match.params.id, post)
-      .then(res => console.log(res.data));
+      .post("http://localhost:5000/posts/update/" + this.props.match.params.id, post)
+      .then(response => console.log(response));
+      this.props.history.push("/forum");
 
-    window.location = "/";
+    this.setState({
+      username: "",
+      title: "",
+      description: "",
+      date: new Date()
+    });
   }
 
   render() {

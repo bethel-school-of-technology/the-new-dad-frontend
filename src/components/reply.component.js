@@ -2,15 +2,27 @@ import React, { Component } from "react";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 
+const ColoredLine = ({ color }) => (
+  <hr
+    style={{
+      color: color,
+      backgroundColor: color,
+      height: 5
+    }}
+  />
+);
+
 export default class Reply extends Component {
   constructor(props) {
     super(props);
+    this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       post: {
         username: "",
         title: "",
         description: "",
-        date: new Date()
+        date: new Date(),
+        replies: []
       }
     };
   }
@@ -23,7 +35,8 @@ export default class Reply extends Component {
             username: response.data.username,
             title: response.data.title,
             description: response.data.description,
-            date: new Date(response.data.date)
+            date: new Date(response.data.date),
+            replies: response.data.replies
           }
         });
       })
@@ -31,75 +44,55 @@ export default class Reply extends Component {
         console.log(error);
       });
   }
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value
-    });
-  }
-  onChangeTitle(e) {
-    this.setState({
-      title: e.target.value
-    });
-  }
-  onChangeDescription(e) {
-    this.setState({
-      description: e.target.value
-    });
-  }
-  onChangeDate(date) {
-    this.setState({
-      date: date
-    });
-  }
   onSubmit(e) {
     e.preventDefault();
     const post = {
-      username: this.state.username,
-      title: this.state.title,
-      description: this.state.description,
-      date: this.state.date
+      replies: this.state.replies
     };
     console.log(post);
     axios
-      .post("http://localhost:5000/replies/add", post)
+      .post(
+        "http://localhost:5000/posts/add" + this.props.match.params.id,
+        post
+      )
       .then(res => console.log(res.data));
-    window.location = "/forum";
   }
   render() {
+    const replyList = this.state.post.replies.map((reply, index) => (
+      <li key={index}>{reply}</li>
+    ));
     return (
       <div>
-        <p>
-          <h1>Reply to the Question!</h1>
-          <br />
-          <h3>
-            Posted By:{" "}
-            <em style={{ color: "blue" }}>{this.state.post.username}</em>
-          </h3>
-        </p>
-        <p>
-          <h3>
-            Title: <em style={{ color: "blue" }}>{this.state.post.title}</em>
-          </h3>
-        </p>
-        <p>
-          <h3>
-            Original Question:{" "}
-            <em style={{ color: "blue" }}>{this.state.post.description}</em>
-          </h3>
-        </p>
+        <h1>Reply to the Question!</h1>
+        <br />
+        <h3>
+          Posted By:{" "}
+          <em style={{ color: "blue" }}>{this.state.post.username}</em>
+        </h3>
+        <h3>
+          Title: <em style={{ color: "blue" }}>{this.state.post.title}</em>
+        </h3>
+        <h3>
+          Original Question:{" "}
+          <em style={{ color: "blue" }}>{this.state.post.description}</em>
+        </h3>
         <h3>Reply:</h3>{" "}
-        <form className="textArea" onSubmit={this.onSubmit}>
+        <form className="btn btn-primary" onSubmit={this.onSubmit}>
           <textarea
             name="text"
             cols="50"
             rows="3"
-            maxlength="280"
+            maxLength="280"
             placeholder="Start typing here!"
-            onKeyDown={this.onEnterPress}
           ></textarea>
           <br />
-          <input type="submit" value="Submit!" className="btn btn-primary" />
+          <input type="submit" value="Submit!" className="btn btn-success" />
         </form>
+        <ColoredLine color="black" />
+        <div>
+          <ul>{replyList}</ul>
+          {/* <p style={{ color: "blue" }}>{this.state.post.replies}</p> */}
+        </div>
       </div>
     );
   }

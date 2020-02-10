@@ -68,9 +68,20 @@ export default class CreateBlogs extends Component {
 
     axios
       .post("http://localhost:5000/blogs/add", blog)
-      .then(res => console.log(res.data));
+      .then(res => {
+        if (res.status === 200) {
+          console.log('Blog Created!');
+        this.props.history.push("/blog");
+      }})
+      .catch(err => alert('Error, blog not created!'));
 
-    window.location = "/blog";
+
+    this.setState({
+      username: "",
+      title: "",
+      description: "",
+      date: new Date()
+    });
   }
 
 

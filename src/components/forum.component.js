@@ -9,19 +9,12 @@ const Post = props => (
     <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>
-      <Link to={"/edit/" + props.post._id}>edit</Link> |{" "}
+      <Link to={"/editpost/" + props.post._id}>edit</Link> |{" "}
       <a
         href="#"
-        onClick={() => {
-          props.deletePost(props.post._id);
-        }}
-      >
-        delete
-      </a>
+        onClick={() => { props.deletePost(props.post._id) }}>delete</a>
       | {""}
-      <a href={"/reply/" + props.post._id} className="btn btn-primary">
-        Reply
-      </a>
+      <a href={"/reply/" + props.post._id} className="btn btn-primary">Reply</a>
     </td>
   </tr>
 );
@@ -36,7 +29,10 @@ export default class PostList extends Component {
     this.deletePost = this.deletePost.bind(this);
     this.state = { posts: [] };
   }
+
   componentDidMount() {
+    console.log(process.env);
+
     axios
       .get("http://localhost:5000/posts/")
       .then(response => {
@@ -46,14 +42,17 @@ export default class PostList extends Component {
         console.log(error);
       });
   }
+
   deletePost(id) {
     axios
       .delete("http://localhost:5000/posts/" + id)
       .then(res => console.log(res.data));
+
     this.setState({
       posts: this.state.posts.filter(el => el._id !== id)
     });
   }
+
   postList() {
     return this.state.posts.map(currentpost => {
       return (
@@ -85,7 +84,9 @@ export default class PostList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>{this.postList()}</tbody>
+          <tbody>
+            {this.postList()}
+          </tbody>
         </table>
       </div>
     );
