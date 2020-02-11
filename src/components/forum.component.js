@@ -60,7 +60,7 @@ export default class blogList extends Component {
     });
   }
 
-  blogList() {
+  postList() {
     return this.state.posts.map(currentpost => {
       return (
         <Post
@@ -73,7 +73,6 @@ export default class blogList extends Component {
   }
   render() {
     return (
-
       <div>
         <h1>
           Posted Questions {""}
@@ -83,17 +82,15 @@ export default class blogList extends Component {
         </h1>
         <table className="table">
           <thead className="thead-light">
-          <th>Name</th>
-          <th>Title</th>
-          <th>Body</th>
-          <th>Date</th>
-          <th></th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Date</th>
+            <th></th>
           </thead>
-         
-          <tbody>
-              {this.blogList()}
-          </tbody>
-          </table>
+
+          <tbody>{this.postList()}</tbody>
+        </table>
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -103,10 +100,8 @@ export default class blogList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-       
-
         </table>
       </div>
-    )};
+    );
+  }
 }
-

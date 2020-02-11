@@ -2,17 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-export default class CreateBlog extends Component {
+export default class CreateBlogs extends Component {
   constructor(props) {
     super(props);
-
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
     this.state = {
       username: "",
       title: "",
@@ -21,7 +18,6 @@ export default class CreateBlog extends Component {
       users: []
     };
   }
-
   componentDidMount() {
     axios.get("http://localhost:5000/users/").then(response => {
       if (response.data.length > 0) {
@@ -31,62 +27,46 @@ export default class CreateBlog extends Component {
       }
     });
   }
-
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
     });
   }
-
   onChangeTitle(e) {
     this.setState({
       title: e.target.value
     });
   }
-
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
     });
   }
-
   onChangeDate(date) {
     this.setState({
       date: date
     });
   }
-
   onSubmit(e) {
     e.preventDefault();
-
-    const post = {
+    const blog = {
       username: this.state.username,
       title: this.state.title,
       description: this.state.description,
       date: this.state.date
     };
-
     axios
-      .post("http://localhost:5000/posts/add", post)
+      .post("http://localhost:5000/blogs/add", blog)
       .then(res => console.log(res.data));
-
-    this.setState({
-      username: "",
-      title: "",
-      description: ""
-    })  
-
     window.location = "/blog";
   }
-
-
   render() {
     return (
       <div style={{ fontFamily: 'Optima' }}>
-        <h3>Create New Post</h3>
+        <h3>Create New Blog</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username: </label>
+            <label>Name: </label>
             <select
               ref="userInput"
               required
@@ -114,7 +94,7 @@ export default class CreateBlog extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Description:</label>
+            <label>Body:</label>
             <textarea
               className="form-control"
               value={this.state.description}
@@ -130,7 +110,6 @@ export default class CreateBlog extends Component {
               />
             </div>
           </div>
-
           <div className="form-group">
             <input
               type="submit"

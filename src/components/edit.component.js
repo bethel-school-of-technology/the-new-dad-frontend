@@ -3,8 +3,6 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
-
 export default class Edit extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +47,6 @@ export default class Edit extends Component {
     });
   }
 
-
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
@@ -61,7 +58,7 @@ export default class Edit extends Component {
       title: e.target.value
     });
   }
-  
+
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
@@ -87,7 +84,10 @@ export default class Edit extends Component {
     console.log(post);
 
     axios
-      .post("http://localhost:5000/posts/update/"+this.props.match.params.id, post)
+      .post(
+        "http://localhost:5000/posts/update/" + this.props.match.params.id,
+        post
+      )
       .then(res => console.log(res.data));
 
     window.location = "/";
@@ -117,7 +117,7 @@ export default class Edit extends Component {
               value={this.state.title}
               onChange={this.onChangeTitle}
             />
-            </div>
+          </div>
           <div className="form-group">
             <label>Description:</label>
             <input

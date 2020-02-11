@@ -1,29 +1,31 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import DatePicker from "react-datepicker";
+import React from "react";
+import commentBox from "commentbox.io";
 import "react-datepicker/dist/react-datepicker.css";
-
-export default class Reply extends Component {
+import axios from "axios";
+export default class PageWithComments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       post: {
         username: "",
+        title: "",
         description: "",
         date: new Date()
       }
     };
   }
   componentDidMount() {
+    this.removeCommentBox = commentBox("5635818488070144-proj");
     axios
       .get("http://localhost:5000/posts/" + this.props.match.params.id)
       .then(response => {
         this.setState({
           post: {
             username: response.data.username,
+            title: response.data.title,
             description: response.data.description,
-            date: new Date(response.data.date)
+            date: new Date(response.data.date),
+            replies: response.data.replies
           }
         });
       })
@@ -31,58 +33,26 @@ export default class Reply extends Component {
         console.log(error);
       });
   }
-
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value
-    });
-  }
-
-  onChangeDescription(e) {
-    this.setState({
-      description: e.target.value
-    });
-  }
-
-  onChangeDate(date) {
-    this.setState({
-      date: date
-    });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    const reply = {
-      username: this.state.username,
-      description: this.state.description,
-      date: this.state.date
-    };
-
-    console.log(reply);
-
-    axios
-      .post("http://localhost:5000/replies/add", reply)
-      .then(res => console.log(res.data));
-
-    window.location = "/forum";
+  componentWillUnmount() {
+    this.removeCommentBox();
   }
   render() {
     return (
       <div>
-        <p>
-          <h3>Posted By:</h3>
-        </p>
-        <h2>{this.state.post.username}</h2>
-        <br></br>
-        <p>
-          <h3>Original Question</h3>
-          <em>
-            <h2>{this.state.post.description}</h2>
-          </em>
-          <br />
-        </p>
-        <h3>Reply:</h3> <textarea></textarea>
+        <h1>Reply to the Question!</h1>
+        <br />
+        <h3>
+          Posted By:{" "}
+          <em style={{ color: "blue" }}>{this.state.post.username}</em>
+        </h3>
+        <h3>
+          Title: <em style={{ color: "blue" }}>{this.state.post.title}</em>
+        </h3>
+        <h3>
+          Original Question:{" "}
+          <em style={{ color: "blue" }}>{this.state.post.description}</em>
+        </h3>
+        <div className="commentbox" />;
       </div>
     );
   }

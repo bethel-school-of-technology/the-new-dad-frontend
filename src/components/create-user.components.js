@@ -10,7 +10,7 @@ export default class CreateUsers extends Component {
     this.state = {
       username: "",
       email: "",
-      password: "",
+      password: ""
     };
   }
   onChangeUsername(e) {
@@ -42,13 +42,12 @@ export default class CreateUsers extends Component {
     this.setState({
       username: "",
       email: "",
-      post: "",
       password: ""
     });
   }
   render() {
     return (
-      <div style={{ fontFamily: 'Optima' }}>
+      <div style={{ fontFamily: "Optima" }}>
         <h3>Create an Account</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -62,7 +61,8 @@ export default class CreateUsers extends Component {
             />
             <label>Email:</label>
             <input
-              type="text"
+              type="email"
+              placeholder="ex: user@email.com"
               required
               className="form-control"
               value={this.state.email}

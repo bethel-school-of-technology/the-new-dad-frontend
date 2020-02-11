@@ -1,8 +1,7 @@
-  
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class Create extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -38,15 +37,21 @@ export default class Create extends Component {
 
     axios
       .post("http://localhost:5000/users/login", login)
-      .then(res => console.log(res));
-
-    this.setState({
-      username: "",
-      password: ""
-    });
-
-    window.location = "/";
-  }
+      .then(response => {
+          if (response.data === "Wrong password") {
+            console.log(response);
+            alert('Invalid password! Please try again.');
+          } if (response.data !== "Wrong password" && response.status === 200) {
+            console.log(response);
+            alert('You are logged in!')
+            this.props.history.push("/");
+          }
+          })
+      .catch(error => {
+        console.log('Login Error:', error)
+        alert('Invalid username or password, please try again!'); 
+      })
+  } 
 
   render() {
     return (
@@ -66,14 +71,13 @@ export default class Create extends Component {
           <div className="form-group">
             <label>Password:</label>
             <input
-              type="text"
+              type="password"
               required
               className="form-control"
               value={this.state.password}
               onChange={this.onChangePassword}
             />
           </div>
-
           <div className="form-group">
             <input type="submit" value="Login" className="btn btn-primary" />
           </div>

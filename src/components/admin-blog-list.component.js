@@ -1,87 +1,70 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-const Post = props => (
+const Blog = props => (
   <tr>
-    <td>{props.post.username}</td>
-    <td>{props.post.title}</td>
-    <td>{props.post.description}</td>
-    <td>{props.post.date.substring(0, 10)}</td>
+    <td>{props.blog.username}</td>
+    <td>{props.blog.title}</td>
+    <td>{props.blog.description}</td>
+    <td>{props.blog.date.substring(0, 10)}</td>
     <td>
-      <Link to={"/edit/" + props.post._id}>edit</Link> |{" "}
-      <a
-        href="#"
-        onClick={() => {
-          props.deletePost(props.post._id);
-        }}
-      >
-        delete
-      </a>
-      | {""}
-      <a href={"/reply/" + props.post._id} className="btn btn-primary">
-        Reply
-      </a>
+      <Link to={'/edit/' + props.blog._id}>edit</Link> | <a href='#' onClick={() => { props.deleteBlog(props.blog._id) }}>delete</a>
     </td>
   </tr>
-);
-
-function refreshPage() {
-  window.location.reload();
-}
-
+)
 export default class blogList extends Component {
   constructor(props) {
     super(props);
-
-    this.deletePost = this.deletePost.bind(this);
-
-    this.state = { posts: [] };
+    this.deleteBlog = this.deleteBlog.bind(this);
+    this.state = { blogs: [] };
   }
-
   componentDidMount() {
+    console.log(process.env)
     axios
-      .get("http://localhost:5000/posts/")
+      .get(`http://localhost:5000/blogs/`)
       .then(response => {
-        this.setState({ posts: response.data });
+        this.setState({ blogs: response.data });
       })
       .catch(error => {
         console.log(error);
       });
   }
-  deletePost(id) {
+  deleteBlog(id) {
     axios
-      .delete("http://localhost:5000/posts/" + id)
+      .delete("http://localhost:5000/blogs/" + id)
       .then(res => console.log(res.data));
     this.setState({
-      posts: this.state.posts.filter(el => el._id !== id)
+      blogs: this.state.blogs.filter(el => el._id !== id)
     });
   }
   blogList() {
-    return this.state.posts.map(currentpost => {
+    return this.state.blogs.map(currentblog => {
       return (
-        <Post
-          post={currentpost}
-          deletePost={this.deletePost}
-          key={currentpost._id}
+        <Blog
+          blog={currentblog}
+          deleteBlog={this.deleteBlog}
+          key={currentblog._id}
         />
       );
     });
   }
-
   render() {
     return (
-      <div style={{ fontFamily: "optima" }}>
+      <div style={{ fontFamily: "optima"}}>
         <h1>Admin Blog List</h1>
         <table className="table">
           <thead className="thead-light">
-            <th>Name</th>
-            <th>Title</th>
-            <th>Body</th>
-            <th>Date</th>
-            <th></th>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Date</th>
+          <th></th>
           </thead>
-          <tbody>{this.blogList()}</tbody>
+          <tbody>
+              {this.blogList()}
+          </tbody>
         </table>
-        </div>
-)}
-    };
+      </div >
+    );
+  }
+}
