@@ -21,7 +21,7 @@ export default class EditPost extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/posts/" + this.props.match.params.id)
+      .get("/posts/" + this.props.match.params.id)
       .then(response => {
         this.setState({
           username: response.data.username,
@@ -33,7 +33,7 @@ export default class EditPost extends Component {
       .catch(function(error) {
         console.log(error);
       });
-    axios.get("http://localhost:5000/users/").then(response => {
+    axios.get("/users/").then(response => {
       if (response.data.length > 0) {
         this.setState({
           users: response.data.map(user => user.username),
@@ -72,10 +72,7 @@ export default class EditPost extends Component {
     };
     console.log(post);
     axios
-      .post(
-        "http://localhost:5000/posts/update/" + this.props.match.params.id,
-        post
-      )
+      .post("posts/update/" + this.props.match.params.id, post)
       .then(res => console.log(res.data));
     window.location = "/";
   }

@@ -24,7 +24,7 @@ export default class BlogList extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/blogs/")
+      .get("blogs/")
       .then(response => {
         this.setState({ blogs: response.data });
       })
@@ -33,9 +33,7 @@ export default class BlogList extends Component {
       });
   }
   deleteBlog(id) {
-    axios
-      .delete("http://localhost:5000/blogs/" + id)
-      .then(res => console.log(res.data));
+    axios.delete("blogs/" + id).then(res => console.log(res.data));
     this.setState({
       blogs: this.state.blogs.filter(el => el._id !== id)
     });

@@ -41,7 +41,8 @@ export default class PostList extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/posts/")
+      .get("/posts")
+      // .get("http://localhost:5000/posts/")
       .then(response => {
         this.setState({ posts: response.data });
       })
@@ -52,7 +53,8 @@ export default class PostList extends Component {
 
   deletePost(id) {
     axios
-      .delete("http://localhost:5000/posts/" + id)
+      .delete("/posts/" + id)
+      // .delete("http://localhost:5000/posts/" + id)
       .then(res => console.log(res.data));
 
     this.setState({

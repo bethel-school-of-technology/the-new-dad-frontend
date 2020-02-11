@@ -35,9 +35,7 @@ export default class Create extends Component {
       password: this.state.password
     };
 
-    axios
-      .post("http://localhost:5000/users/login", login)
-      .then(res => console.log(res));
+    axios.post("/users/login", login).then(res => console.log(res));
 
     this.setState({
       username: "",
@@ -49,7 +47,7 @@ export default class Create extends Component {
 
   render() {
     return (
-      <div style={{ fontFamily: "optima"}}>
+      <div style={{ fontFamily: "optima" }}>
         <h3>Login</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">

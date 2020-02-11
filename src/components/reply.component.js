@@ -91,7 +91,7 @@ export default class Reply extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/posts/" + this.props.match.params.id)
+      .get("/posts/" + this.props.match.params.id)
       .then(response => {
         this.setState({
           post: {
@@ -115,10 +115,7 @@ export default class Reply extends Component {
     console.log(post);
 
     axios
-      .put(
-        "http://localhost:5000/posts/updatepost/" + this.props.match.params.id,
-        post
-      )
+      .put("/posts/updatepost/" + this.props.match.params.id, post)
       .then(res => console.log(res.data));
   }
 

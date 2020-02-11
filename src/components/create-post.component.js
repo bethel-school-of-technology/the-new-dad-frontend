@@ -21,7 +21,7 @@ export default class CreatePosts extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:5000/users/").then(response => {
+    axios.get("users/").then(response => {
       if (response.data.length > 0) {
         this.setState({
           users: response.data.map(user => user.username)
@@ -57,11 +57,7 @@ export default class CreatePosts extends Component {
       description: this.state.description,
       date: this.state.date
     };
-    axios
-      .post("http://localhost:5000/posts/add", post)
-      .then(res => console.log(res.data));
-
-    window.location = "/forum";
+    axios.post("/posts/add", post).then(res => console.log(res.data));
   }
 
   render() {
