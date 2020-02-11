@@ -72,7 +72,7 @@ export default class EditPost extends Component {
     };
     console.log(post);
     axios
-      .put(
+      .post(
         "http://localhost:5000/posts/update/" + this.props.match.params.id,
         post
       )

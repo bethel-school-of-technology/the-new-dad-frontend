@@ -13,7 +13,7 @@ import AdminBlogList from "./components/admin-blog-list.component";
 import Home from "./components/home.component";
 import Footer from "./components/footer.component";
 import Forum from "./components/forum.component";
-import PageWithComments from "./components/reply.component";
+import Reply from "./components/reply.component";
 
 import "./index.css";
 
@@ -31,11 +31,10 @@ function App() {
         <Route path="/blog" component={BlogList} />
         <Route path="/display/:id" component={Display} />
         <Route path="/adminbloglist" component={AdminBlogList} />
-        <Route path="/" exact component={Home} />
         <Route path="/edit/:id" component={EditPost} />
         <Route path="/createpost" exact component={CreatePosts} />
         <Route path="/forum" component={Forum} />
-        <Route path="/reply/:id" component={PageWithComments} />
+        <Route path="/reply/:id" component={Reply} />
 
         <Footer />
       </div>
