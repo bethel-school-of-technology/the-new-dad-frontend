@@ -24,7 +24,7 @@ export default class BlogList extends Component {
   }
   componentDidMount() {
     axios
-      .get("blogs/")
+      .get("/blogs/")
       .then(response => {
         this.setState({ blogs: response.data });
       })
