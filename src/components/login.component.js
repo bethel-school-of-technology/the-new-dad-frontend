@@ -9,12 +9,6 @@ export default class Login extends Component {
       username: "",
       password: ""
     };
-    
-    // this.onChangeUsername = this.onChangeUsername.bind(this);
-    // this.onChangePassword = this.onChangePassword.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
-
-    
   }
 
   handleInputChange = (event) => {
@@ -47,45 +41,6 @@ export default class Login extends Component {
       alert('Error logging in please try again');
     });
   }
-
-  // onChangeUsername(e) {
-  //   this.setState({
-  //     username: e.target.value
-  //   });
-  // }
-
-  // onChangePassword(e) {
-  //   this.setState({
-  //     password: e.target.value
-  //   });
-  // }
-
-  // onSubmit(e) {
-  //   e.preventDefault();
-  //   alert('Authentication coming soon!');
-
-    // const login = {
-    //   username: this.state.username,
-    //   password: this.state.password
-    // };
-
-  //   // axios
-  //   //   .post("/users/login", login)
-  //   //   .then(response => {
-  //   //       if (response.data === "Wrong password") {
-  //   //         console.log(response);
-  //   //         alert('Invalid password! Please try again.');
-  //   //       } if (response.data !== "Wrong password" && response.status === 200) {
-  //   //         console.log(response);
-  //   //         alert('You are logged in!')
-  //   //         this.props.history.push("/");
-  //   //       }
-  //   //       })
-  //   //   .catch(error => {
-  //   //     console.log('Login Error:', error)
-  //   //     alert('Invalid username or password, please try again!'); 
-  //   //   })
-  // } 
 
   render() {
     return (
