@@ -1,44 +1,58 @@
 import React, { Component } from "react";
 import axios from "axios";
+
 export default class CreateUsers extends Component {
   constructor(props) {
     super(props);
+
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       username: "",
       email: "",
       password: "",
     };
   }
+
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
     });
   }
+
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
     });
   }
+
   onChangePassword(e) {
     this.setState({
       password: e.target.value
     });
   }
+
   onSubmit(e) {
     e.preventDefault();
+
     const user = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
     };
+
     axios
-      .post("http://localhost:5000/users/add", user)
-      .then(res => console.log(res.data));
-    //abstraction*
+      .post("/users/add", user)
+      .then(res => {
+        if (res.status === 200) {
+          console.log('User Created!');
+        this.props.history.push("/usercreated");
+      }})
+      .catch(err => alert('User and/or email already exists! Please try again.'));
+
     this.setState({
       username: "",
       email: "",
@@ -46,7 +60,9 @@ export default class CreateUsers extends Component {
       password: ""
     });
   }
+
   render() {
+
     return (
       <div style={{ fontFamily: 'Optima' }}>
         <h3>Create an Account</h3>
@@ -62,7 +78,8 @@ export default class CreateUsers extends Component {
             />
             <label>Email:</label>
             <input
-              type="text"
+              type="email"
+              placeholder="ex: user@email.com"
               required
               className="form-control"
               value={this.state.email}
@@ -70,7 +87,7 @@ export default class CreateUsers extends Component {
             />
             <label>Password:</label>
             <input
-              type="text"
+              type="password"
               required
               className="form-control"
               value={this.state.password}
@@ -83,5 +100,5 @@ export default class CreateUsers extends Component {
         </form>
       </div>
     );
+    }
   }
-}
