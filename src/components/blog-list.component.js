@@ -10,9 +10,8 @@ const Blog = props => (
         <img className="card-img-top" src={TheNewDad} alt="Card cap"></img>
         <div className="card-body" style={{ fontFamily: 'Optima' }}>
             <h5 className="card-title">{props.blog.title}</h5>
-            <em className="card-text">By: {props.blog.username}</em><br></br>
             <p></p>
-            <a href={'/display/' + props.blog._id}  className="btn btn-primary">Read</a>
+            <a href={'/displayblog/' + props.blog._id}  className="btn btn-primary">Read</a>
         </div>
     </div>
 )
@@ -28,7 +27,7 @@ export default class BlogList extends Component {
 
     componentDidMount() {
         axios
-            .get("http://localhost:5000/blogs/")
+            .get("/blogs/")
             .then(response => {
                 this.setState({ blogs: response.data });
             })
@@ -39,7 +38,7 @@ export default class BlogList extends Component {
 
     deleteBlog(id) {
         axios
-            .delete("http://localhost:5000/blogs/" + id)
+            .delete("/blogs/" + id)
             .then(res => console.log(res.data));
 
         this.setState({

@@ -4,7 +4,6 @@ import axios from "axios";
 
 const Blog = props => (
   <tr>
-    <td>{props.blog.username}</td>
     <td>{props.blog.title}</td>
     <td>{props.blog.description}</td>
     <td>{props.blog.date.substring(0, 10)}</td>
@@ -27,7 +26,7 @@ export default class blogList extends Component {
     console.log(process.env);
 
     axios
-      .get("http://localhost:5000/blogs/")
+      .get("/blogs/")
       .then(response => {
         this.setState({ blogs: response.data });
       })
@@ -38,7 +37,7 @@ export default class blogList extends Component {
 
   deleteBlog(id) {
     axios
-      .delete("http://localhost:5000/blogs/" + id)
+      .delete("/blogs/" + id)
       .then(res => console.log(res.data));
 
     this.setState({
@@ -64,7 +63,6 @@ export default class blogList extends Component {
         <h1>Admin Blog List</h1>
         <table className="table">
           <thead className="thead-light">
-          <th>Name</th>
           <th>Title</th>
           <th>Body</th>
           <th>Date</th>
@@ -74,7 +72,7 @@ export default class blogList extends Component {
               {this.blogList()}
           </tbody>
         </table>
-      </div >
+      </div>
     );
   }
 }

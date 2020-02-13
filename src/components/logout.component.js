@@ -6,7 +6,7 @@ export default class Logout extends Component {
     onSubmit(e) {
         e.preventDefault();
         axios
-          .post("http://localhost:5000/users/logout")
+          .post("/users/logout")
           .then(res => console.log(res));
       }
 
@@ -19,4 +19,3 @@ export default class Logout extends Component {
          );
     }
 }
- 

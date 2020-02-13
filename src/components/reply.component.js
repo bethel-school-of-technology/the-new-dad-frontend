@@ -28,7 +28,7 @@ export default class Reply extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/posts/" + this.props.match.params.id)
+      .get("/posts/" + this.props.match.params.id)
       .then(response => {
         this.setState({
           post: {
@@ -52,14 +52,14 @@ export default class Reply extends Component {
     console.log(post);
     axios
       .post(
-        "http://localhost:5000/posts/add" + this.props.match.params.id,
+        "/posts/add" + this.props.match.params.id,
         post
       )
       .then(res => console.log(res.data));
   }
   render() {
     const replyList = this.state.post.replies.map((reply, index) => (
-      <li key={index}>{reply}</li>
+      <li key={index}>{reply.reply}<br></br>{reply.username}</li>
     ));
     return (
       <div>

@@ -5,53 +5,87 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-
     this.state = {
       username: "",
       password: ""
     };
+    
+    // this.onChangeUsername = this.onChangeUsername.bind(this);
+    // this.onChangePassword = this.onChangePassword.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
+
+    
   }
 
-  onChangeUsername(e) {
+  handleInputChange = (event) => {
+    const { value, name } = event.target;
     this.setState({
-      username: e.target.value
+      [name]: value
     });
   }
 
-  onChangePassword(e) {
-    this.setState({
-      password: e.target.value
-    });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
+  onSubmit = (event) => {
+    event.preventDefault();
     const login = {
       username: this.state.username,
       password: this.state.password
     };
-
     axios
-      .post("http://localhost:5000/users/login", login)
-      .then(response => {
-          if (response.data === "Wrong password") {
-            console.log(response);
-            alert('Invalid password! Please try again.');
-          } if (response.data !== "Wrong password" && response.status === 200) {
-            console.log(response);
-            alert('You are logged in!')
-            this.props.history.push("/");
-          }
-          })
-      .catch(error => {
-        console.log('Login Error:', error)
-        alert('Invalid username or password, please try again!'); 
-      })
-  } 
+        .post("/users/login", login)
+    .then(res => {
+      if (res.status === 200) {
+        console.log(res);
+        alert('You are logged in!');
+        this.props.history.push('/');
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+    });
+  }
+
+  // onChangeUsername(e) {
+  //   this.setState({
+  //     username: e.target.value
+  //   });
+  // }
+
+  // onChangePassword(e) {
+  //   this.setState({
+  //     password: e.target.value
+  //   });
+  // }
+
+  // onSubmit(e) {
+  //   e.preventDefault();
+  //   alert('Authentication coming soon!');
+
+    // const login = {
+    //   username: this.state.username,
+    //   password: this.state.password
+    // };
+
+  //   // axios
+  //   //   .post("/users/login", login)
+  //   //   .then(response => {
+  //   //       if (response.data === "Wrong password") {
+  //   //         console.log(response);
+  //   //         alert('Invalid password! Please try again.');
+  //   //       } if (response.data !== "Wrong password" && response.status === 200) {
+  //   //         console.log(response);
+  //   //         alert('You are logged in!')
+  //   //         this.props.history.push("/");
+  //   //       }
+  //   //       })
+  //   //   .catch(error => {
+  //   //     console.log('Login Error:', error)
+  //   //     alert('Invalid username or password, please try again!'); 
+  //   //   })
+  // } 
 
   render() {
     return (
@@ -62,20 +96,22 @@ export default class Login extends Component {
             <label>Username: </label>
             <input
               type="text"
+              name="username"
               required
               className="form-control"
               value={this.state.username}
-              onChange={this.onChangeUsername}
+              onChange={this.handleInputChange}
             />
           </div>
           <div className="form-group">
             <label>Password:</label>
             <input
               type="password"
+              name="password"
               required
               className="form-control"
               value={this.state.password}
-              onChange={this.onChangePassword}
+              onChange={this.handleInputChange}
             />
           </div>
           <div className="form-group">

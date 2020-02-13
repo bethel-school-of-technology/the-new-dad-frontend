@@ -3,7 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class CreateBlogs extends Component {
+export default class EditBlog extends Component {
   constructor(props) {
     super(props);
 
@@ -20,12 +20,28 @@ export default class CreateBlogs extends Component {
     };
   }
 
+  componentDidMount() {
+    axios
+      .get("/blogs/" + this.props.match.params.id)
+      .then(response => {
+        console.log(response.data);
+        this.setState({
+          title: response.data.title,
+          description: response.data.description,
+          date: new Date(response.data.date)
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   onChangeTitle(e) {
     this.setState({
       title: e.target.value
     });
   }
-
+  
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
@@ -47,28 +63,21 @@ export default class CreateBlogs extends Component {
       date: this.state.date
     };
 
+    console.log(blog);
+
     axios
-      .post("/blogs/add", blog)
-      .then(res => {
-        if (res.status === 200) {
-          console.log('Blog Created!');
-        this.props.history.push("/blog");
-      }})
-      .catch(err => alert('Error, blog not created!'));
+      .post("/blogs/update/" + this.props.match.params.id, blog)
+      .then(response => {
+        console.log(response);
+      this.props.history.push("/adminbloglist");
+      });
 
-
-    this.setState({
-      title: "",
-      description: "",
-      date: new Date()
-    });
   }
-
 
   render() {
     return (
-      <div style={{ fontFamily: 'Optima' }}>
-        <h3>Create New Blog</h3>
+      <div>
+        <h3>Edit Blog</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Title:</label>
@@ -79,14 +88,16 @@ export default class CreateBlogs extends Component {
               value={this.state.title}
               onChange={this.onChangeTitle}
             />
-          </div>
+            </div>
           <div className="form-group">
-            <label>Body:</label>
-            <textarea
+            <label>Description:</label>
+            <input
+              type="text"
+              required
               className="form-control"
               value={this.state.description}
               onChange={this.onChangeDescription}
-            ></textarea>
+            />
           </div>
           <div className="form-group">
             <label>Date:</label>
@@ -97,11 +108,10 @@ export default class CreateBlogs extends Component {
               />
             </div>
           </div>
-
           <div className="form-group">
             <input
               type="submit"
-              value="Create Blog"
+              value="Edit Blog"
               className="btn btn-primary"
             />
           </div>

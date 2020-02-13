@@ -45,7 +45,7 @@ export default class CreateUsers extends Component {
     };
 
     axios
-      .post("http://localhost:5000/users/add", user)
+      .post("/users/add", user)
       .then(res => {
         if (res.status === 200) {
           console.log('User Created!');
@@ -78,7 +78,8 @@ export default class CreateUsers extends Component {
             />
             <label>Email:</label>
             <input
-              type="text"
+              type="email"
+              placeholder="ex: user@email.com"
               required
               className="form-control"
               value={this.state.email}

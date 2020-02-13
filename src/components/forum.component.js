@@ -9,24 +9,19 @@ const Post = props => (
     <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>
-      <Link to={"/editpost/" + props.post._id}>edit</Link> |{" "}
-      <a
-        href="#"
-        onClick={() => { props.deletePost(props.post._id) }}>delete</a>
-      | {""}
-      <a href={"/reply/" + props.post._id} className="btn btn-primary">Reply</a>
+      <Link to={"/editpost/" + props.post._id}>edit</Link> | <a
+        href="#" onClick={() => { props.deletePost(props.post._id) }}>delete</a>
+        <a href={"/reply/" + props.post._id} className="btn btn-primary">Reply</a>
     </td>
   </tr>
 );
 
-function refreshPage() {
-  window.location.reload();
-}
-
 export default class PostList extends Component {
   constructor(props) {
     super(props);
+
     this.deletePost = this.deletePost.bind(this);
+    
     this.state = { posts: [] };
   }
 
@@ -34,7 +29,7 @@ export default class PostList extends Component {
     console.log(process.env);
 
     axios
-      .get("http://localhost:5000/posts/")
+      .get("/posts/")
       .then(response => {
         this.setState({ posts: response.data });
       })
@@ -45,7 +40,7 @@ export default class PostList extends Component {
 
   deletePost(id) {
     axios
-      .delete("http://localhost:5000/posts/" + id)
+      .delete("/posts/" + id)
       .then(res => console.log(res.data));
 
     this.setState({
@@ -69,10 +64,7 @@ export default class PostList extends Component {
     return (
       <div>
         <h1>
-          Posted Questions {""}
-          <button type="button" onClick={refreshPage}>
-            <span>Refresh</span>
-          </button>
+          Posted Questions 
         </h1>
         <table className="table">
           <thead className="thead-light">

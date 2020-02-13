@@ -13,7 +13,7 @@ export default class Home extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/posts/")
+      .get("/posts/")
       .then(response => {
         this.setState({ posts: response.data });
       })

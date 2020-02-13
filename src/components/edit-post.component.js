@@ -24,7 +24,7 @@ export default class EditPost extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/posts/" + this.props.match.params.id)
+      .get("/posts/" + this.props.match.params.id)
       .then(response => {
         console.log(response.data);
         this.setState({
@@ -37,9 +37,7 @@ export default class EditPost extends Component {
       .catch(function(error) {
         console.log(error);
       });
-
-    // axios.get("http://localhost:5000/users/").then(res => console.log(res.data));
-  }
+    }
   
   onChangeUsername(e) {
     this.setState({
@@ -78,17 +76,13 @@ export default class EditPost extends Component {
     console.log(post);
 
     axios
-      .post("http://localhost:5000/posts/update/" + this.props.match.params.id, post)
-      .then(response => console.log(response));
+      .post("/posts/update/" + this.props.match.params.id, post)
+      .then(response => {
+        console.log(response);
       this.props.history.push("/forum");
-
-    this.setState({
-      username: "",
-      title: "",
-      description: "",
-      date: new Date()
-    });
+      });
   }
+
 
   render() {
     return (
