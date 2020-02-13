@@ -1,14 +1,9 @@
-  
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class Create extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
-
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       username: "",
@@ -16,36 +11,35 @@ export default class Create extends Component {
     };
   }
 
-  onChangeUsername(e) {
+  handleInputChange = (event) => {
+    const { value, name } = event.target;
     this.setState({
-      username: e.target.value
+      [name]: value
     });
   }
 
-  onChangePassword(e) {
-    this.setState({
-      password: e.target.value
-    });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
+  onSubmit = (event) => {
+    event.preventDefault();
     const login = {
       username: this.state.username,
       password: this.state.password
     };
-
     axios
-      .post("http://localhost:5000/users/login", login)
-      .then(res => console.log(res));
-
-    this.setState({
-      username: "",
-      password: ""
+        .post("/users/login", login)
+    .then(res => {
+      if (res.status === 200) {
+        console.log(res);
+        alert('You are logged in!');
+        this.props.history.push('/');
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
     });
-
-    window.location = "/";
   }
 
   render() {
@@ -57,23 +51,24 @@ export default class Create extends Component {
             <label>Username: </label>
             <input
               type="text"
+              name="username"
               required
               className="form-control"
               value={this.state.username}
-              onChange={this.onChangeUsername}
+              onChange={this.handleInputChange}
             />
           </div>
           <div className="form-group">
             <label>Password:</label>
             <input
-              type="text"
+              type="password"
+              name="password"
               required
               className="form-control"
               value={this.state.password}
-              onChange={this.onChangePassword}
+              onChange={this.handleInputChange}
             />
           </div>
-
           <div className="form-group">
             <input type="submit" value="Login" className="btn btn-primary" />
           </div>

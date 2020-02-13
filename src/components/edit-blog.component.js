@@ -1,22 +1,19 @@
+  
 import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
-
-export default class Edit extends Component {
+export default class EditBlog extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      username: "",
       title: "",
       description: "",
       date: new Date(),
@@ -26,10 +23,10 @@ export default class Edit extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/posts/" + this.props.match.params.id)
+      .get("/blogs/" + this.props.match.params.id)
       .then(response => {
+        console.log(response.data);
         this.setState({
-          username: response.data.username,
           title: response.data.title,
           description: response.data.description,
           date: new Date(response.data.date)
@@ -38,22 +35,6 @@ export default class Edit extends Component {
       .catch(function(error) {
         console.log(error);
       });
-
-    axios.get("http://localhost:5000/users/").then(response => {
-      if (response.data.length > 0) {
-        this.setState({
-          users: response.data.map(user => user.username),
-          username: response.data[0].username
-        });
-      }
-    });
-  }
-
-
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value
-    });
   }
 
   onChangeTitle(e) {
@@ -77,37 +58,28 @@ export default class Edit extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const post = {
-      username: this.state.username,
+    const blog = {
       title: this.state.title,
       description: this.state.description,
       date: this.state.date
     };
 
-    console.log(post);
+    console.log(blog);
 
     axios
-      .post("http://localhost:5000/posts/update/"+this.props.match.params.id, post)
-      .then(res => console.log(res.data));
+      .post("/blogs/update/" + this.props.match.params.id, blog)
+      .then(response => {
+        console.log(response);
+      this.props.history.push("/adminbloglist");
+      });
 
-    window.location = "/";
   }
 
   render() {
     return (
       <div>
-        <h3>Edit Post</h3>
+        <h3>Edit Blog</h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Username: </label>
-            <input
-              ref="userInput"
-              required
-              className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-            />
-          </div>
           <div className="form-group">
             <label>Title:</label>
             <input
@@ -140,7 +112,7 @@ export default class Edit extends Component {
           <div className="form-group">
             <input
               type="submit"
-              value="Edit Question"
+              value="Edit Blog"
               className="btn btn-primary"
             />
           </div>
