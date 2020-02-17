@@ -16,6 +16,9 @@ export default class Reply extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+
+    this.onChangeReplies = this.onChangeReplies.bind(this);
+
     this.state = {
       post: {
         username: "",
@@ -44,22 +47,34 @@ export default class Reply extends Component {
         console.log(error);
       });
   }
+  onChangeReplies(e) {
+    this.setState({
+      replies: e.target.value
+    });
+  }
   onSubmit(e) {
     e.preventDefault();
     const post = {
+      username: this.state.username,
       replies: this.state.replies
     };
     console.log(post);
+
     axios
-      .post(
-        "/posts/add" + this.props.match.params.id,
-        post
-      )
-      .then(res => console.log(res.data));
+      .post("/posts/update/" + this.props.match.params.id, post)
+      .then(res => {
+        if (res.status === 200) {
+          console.log("Reply Created!");
+          this.props.history.push("/reply");
+        }
+      })
+      .catch(err => alert("Oops! Something went wrong, please try again!"));
   }
   render() {
     const replyList = this.state.post.replies.map((reply, index) => (
-      <li key={index}>{reply.reply}<br></br>{reply.username}</li>
+      <li key={index}>
+        "{reply.reply}"<br></br>-<em>{reply.username}</em>
+      </li>
     ));
     return (
       <div>
@@ -80,6 +95,7 @@ export default class Reply extends Component {
         <form className="btn btn-primary" onSubmit={this.onSubmit}>
           <textarea
             name="text"
+            onChange={this.onChangeReplies}
             cols="50"
             rows="3"
             maxLength="280"
@@ -91,7 +107,6 @@ export default class Reply extends Component {
         <ColoredLine color="black" />
         <div>
           <ul>{replyList}</ul>
-          {/* <p style={{ color: "blue" }}>{this.state.post.replies}</p> */}
         </div>
       </div>
     );

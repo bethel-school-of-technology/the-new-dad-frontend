@@ -3,8 +3,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Navbar from "./components/navbar.component";
+<<<<<<< HEAD
 import Login from './components/login.component';
 import Logout from './components/logout.component';
+=======
+import Login from "./components/login.component";
+import Logout from "./components/logout.component";
+>>>>>>> nathansbranch
 import EditPost from "./components/edit-post.component";
 import EditBlog from "./components/edit-blog.component";
 import CreateBlogs from "./components/create-blog.component";
@@ -46,4 +51,8 @@ function App() {
     </Router>
   );
 }
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> nathansbranch

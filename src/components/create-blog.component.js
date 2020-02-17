@@ -51,11 +51,19 @@ export default class CreateBlogs extends Component {
       .post("/blogs/add", blog)
       .then(res => {
         if (res.status === 200) {
+<<<<<<< HEAD
           console.log('Blog Created!');
         this.props.history.push("/blog");
       }})
       .catch(err => alert('Error, blog not created!'));
 
+=======
+          console.log("Blog Created!");
+          this.props.history.push("/blog");
+        }
+      })
+      .catch(err => alert("Error, blog not created!"));
+>>>>>>> nathansbranch
 
     this.setState({
       title: "",
@@ -64,10 +72,16 @@ export default class CreateBlogs extends Component {
     });
   }
 
+<<<<<<< HEAD
 
   render() {
     return (
       <div style={{ fontFamily: 'Optima' }}>
+=======
+  render() {
+    return (
+      <div style={{ fontFamily: "Optima" }}>
+>>>>>>> nathansbranch
         <h3>Create New Blog</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -109,4 +123,8 @@ export default class CreateBlogs extends Component {
       </div>
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> nathansbranch

@@ -13,7 +13,7 @@ export default class CreateUsers extends Component {
     this.state = {
       username: "",
       email: "",
-      password: "",
+      password: ""
     };
   }
 
@@ -48,10 +48,20 @@ export default class CreateUsers extends Component {
       .post("/users/add", user)
       .then(res => {
         if (res.status === 200) {
+<<<<<<< HEAD:src/components/create-user.component.js
           console.log('User Created!');
         this.props.history.push("/usercreated");
       }})
       .catch(err => alert('User and/or email already exists! Please try again.'));
+=======
+          console.log("User Created!");
+          this.props.history.push("/usercreated");
+        }
+      })
+      .catch(err =>
+        alert("User and/or email already exists! Please try again.")
+      );
+>>>>>>> nathansbranch:src/components/create-user.component.js
 
     this.setState({
       username: "",
@@ -64,7 +74,7 @@ export default class CreateUsers extends Component {
   render() {
 
     return (
-      <div style={{ fontFamily: 'Optima' }}>
+      <div style={{ fontFamily: "Optima" }}>
         <h3>Create an Account</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">

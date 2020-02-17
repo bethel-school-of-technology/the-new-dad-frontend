@@ -37,8 +37,13 @@ export default class EditPost extends Component {
       .catch(function(error) {
         console.log(error);
       });
+<<<<<<< HEAD:src/components/edit-post.component.js
     }
   
+=======
+  }
+
+>>>>>>> nathansbranch:src/components/edit-post.component.js
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
@@ -50,7 +55,7 @@ export default class EditPost extends Component {
       title: e.target.value
     });
   }
-  
+
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
@@ -79,7 +84,11 @@ export default class EditPost extends Component {
       .post("/posts/update/" + this.props.match.params.id, post)
       .then(response => {
         console.log(response);
+<<<<<<< HEAD:src/components/edit-post.component.js
       this.props.history.push("/forum");
+=======
+        this.props.history.push("/forum");
+>>>>>>> nathansbranch:src/components/edit-post.component.js
       });
   }
 
@@ -108,7 +117,7 @@ export default class EditPost extends Component {
               value={this.state.title}
               onChange={this.onChangeTitle}
             />
-            </div>
+          </div>
           <div className="form-group">
             <label>Description:</label>
             <input

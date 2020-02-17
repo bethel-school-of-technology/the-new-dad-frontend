@@ -9,21 +9,28 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+<<<<<<< HEAD
     "express-session": "^1.17.0",
+=======
+    "commentbox.io": "^2.0.0",
+    "disqus-react": "^1.0.7",
+>>>>>>> nathansbranch
     "moment": "^2.24.0",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
+    "react-commentbox": "^3.0.1",
     "react-datepicker": "^2.11.0",
     "react-dom": "^16.12.0",
+    "react-facebook": "^8.1.4",
     "react-render-html": "^0.6.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "reactstrap": "^8.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "sh -ac '. .env; react-scripts start'",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

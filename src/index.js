@@ -5,4 +5,8 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:5000";
 
+<<<<<<< HEAD
 ReactDOM.render(<App />, document.getElementById("root"));
+=======
+ReactDOM.render(<App />, document.getElementById("root"));
+>>>>>>> nathansbranch

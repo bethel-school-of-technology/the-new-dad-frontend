@@ -8,10 +8,25 @@ const Blog = props => (
     <td>{props.blog.description}</td>
     <td>{props.blog.date.substring(0, 10)}</td>
     <td>
+<<<<<<< HEAD
       <Link to={'/editblog/' + props.blog._id}>edit</Link> | <a href='#' onClick={() => { props.deleteBlog(props.blog._id) }}>delete</a>
     </td>
   </tr>
 )
+=======
+      <Link to={"/editblog/" + props.blog._id}>edit</Link> |{" "}
+      <a
+        href="#"
+        onClick={() => {
+          props.deleteBlog(props.blog._id);
+        }}
+      >
+        delete
+      </a>
+    </td>
+  </tr>
+);
+>>>>>>> nathansbranch
 
 export default class blogList extends Component {
   constructor(props) {
@@ -36,9 +51,13 @@ export default class blogList extends Component {
   }
 
   deleteBlog(id) {
+<<<<<<< HEAD
     axios
       .delete("/blogs/" + id)
       .then(res => console.log(res.data));
+=======
+    axios.delete("/blogs/" + id).then(res => console.log(res.data));
+>>>>>>> nathansbranch
 
     this.setState({
       blogs: this.state.blogs.filter(el => el._id !== id)
@@ -59,6 +78,7 @@ export default class blogList extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <div style={{ fontFamily: "optima"}}>
         <h1>Admin Blog List</h1>
         <table className="table">
@@ -67,10 +87,18 @@ export default class blogList extends Component {
           <th>Body</th>
           <th>Date</th>
           <th></th>
+=======
+      <div style={{ fontFamily: "optima" }}>
+        <h1>Admin Blog List</h1>
+        <table className="table">
+          <thead className="thead-light">
+            <th>Title</th>
+            <th>Body</th>
+            <th>Date</th>
+            <th></th>
+>>>>>>> nathansbranch
           </thead>
-          <tbody>
-              {this.blogList()}
-          </tbody>
+          <tbody>{this.blogList()}</tbody>
         </table>
       </div>
     );

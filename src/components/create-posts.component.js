@@ -69,15 +69,27 @@ export default class CreatePosts extends Component {
       .post("/posts/add", post)
       .then(res => {
         if (res.status === 200) {
+<<<<<<< HEAD:src/components/create-posts.component.js
           console.log('Post Created!');
         this.props.history.push("/forum");
       }})
       .catch(err => alert('Oops! Something went wrong, please try again!'));
+=======
+          console.log("Post Created!");
+          this.props.history.push("/forum");
+        }
+      })
+      .catch(err => alert("Oops! Something went wrong, please try again!"));
+>>>>>>> nathansbranch:src/components/create-posts.component.js
   }
 
   render() {
     return (
+<<<<<<< HEAD:src/components/create-posts.component.js
       <div style={{ fontFamily: 'Optima' }}>
+=======
+      <div style={{ fontFamily: "Optima" }}>
+>>>>>>> nathansbranch:src/components/create-posts.component.js
         <h3>Ask a Question!</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">

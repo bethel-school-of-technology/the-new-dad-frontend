@@ -1,4 +1,3 @@
-  
 import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
@@ -72,7 +71,6 @@ export default class EditBlog extends Component {
         console.log(response);
       this.props.history.push("/adminbloglist");
       });
-
   }
 
   render() {
@@ -89,7 +87,7 @@ export default class EditBlog extends Component {
               value={this.state.title}
               onChange={this.onChangeTitle}
             />
-            </div>
+          </div>
           <div className="form-group">
             <label>Description:</label>
             <input
