@@ -37,7 +37,7 @@ export default class Navbar extends Component {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/user">
-                  Sign In
+                  Create Account
                 </a>
               </li>
               <li className="nav-item">
@@ -46,18 +46,13 @@ export default class Navbar extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href="/logout">
                   Logout
                 </a>
               </li>
               <li className="navbar-item">
-                <Link to="/createpost" className="nav-link">
+                <Link to="/createposts" className="nav-link">
                   Post Question
-                </Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/user" className="nav-link">
-                  Ask Us
                 </Link>
               </li>
               <li className="navbar-item">
@@ -66,16 +61,6 @@ export default class Navbar extends Component {
                 </Link>
               </li>
             </ul>
-            <form className="form-inline my-2 my-lg-0">
-              <input
-                className="form-control mr-sm-2"
-                type="text"
-                placeholder="Search"
-              ></input>
-              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
-                Search
-              </button>
-            </form>
           </div>
         </nav>
       </div>

@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 import HomeImage from "../images/newdadhome.jpeg";
 import AnkleHangImage from "../images/anklehang.jpeg";
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
+
     this.state = { posts: [] };
   }
+
   componentDidMount() {
     axios
       .get("/posts/")
@@ -17,6 +20,7 @@ export default class Home extends Component {
         console.log(error);
       });
   }
+
   render() {
     return (
       <div>

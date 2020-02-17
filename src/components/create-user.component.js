@@ -44,9 +44,17 @@ export default class CreateUsers extends Component {
       password: this.state.password
     };
 
-    axios.post("/users/add", user).then(res => console.log(res.data));
-
-    //abstraction*
+    axios
+      .post("/users/add", user)
+      .then(res => {
+        if (res.status === 200) {
+          console.log("User Created!");
+          this.props.history.push("/usercreated");
+        }
+      })
+      .catch(err =>
+        alert("User and/or email already exists! Please try again.")
+      );
 
     this.setState({
       username: "",
@@ -72,7 +80,8 @@ export default class CreateUsers extends Component {
             />
             <label>Email:</label>
             <input
-              type="text"
+              type="email"
+              placeholder="ex: user@email.com"
               required
               className="form-control"
               value={this.state.email}
@@ -80,7 +89,7 @@ export default class CreateUsers extends Component {
             />
             <label>Password:</label>
             <input
-              type="text"
+              type="password"
               required
               className="form-control"
               value={this.state.password}
