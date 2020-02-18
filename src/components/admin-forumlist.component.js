@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 const Post = props => (
   <tr>
     <td>{props.post.username}</td>
@@ -9,25 +8,34 @@ const Post = props => (
     <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>
-      <Link to={"/editpost/" + props.post._id}>edit</Link> | <a
-        href="#" onClick={() => { props.deletePost(props.post._id) }}>delete</a>
-        <a href={"/reply/" + props.post._id} className="btn btn-primary">Reply</a>
+      <Link
+        to={"/editpost/" + props.post._id}
+        className="btn-sm btn-success btn-block text-center"
+      >
+        edit
+      </Link>{" "}
+      <br></br>
+      <a
+        href="#"
+        onClick={() => {
+          props.deletePost(props.post._id);
+        }}
+        className="btn-sm btn-warning"
+      >
+        delete
+      </a>
     </td>
   </tr>
 );
-
-export default class PostList extends Component {
+export default class AdminForumList extends Component {
   constructor(props) {
     super(props);
-
     this.deletePost = this.deletePost.bind(this);
-    
     this.state = { posts: [] };
   }
-
   componentDidMount() {
+  
     console.log(process.env);
-
     axios
       .get("/posts/")
       .then(response => {
@@ -37,17 +45,12 @@ export default class PostList extends Component {
         console.log(error);
       });
   }
-
   deletePost(id) {
-    axios
-      .delete("/posts/" + id)
-      .then(res => console.log(res.data));
-
+    axios.delete("/posts/" + id).then(res => console.log(res.data));
     this.setState({
       posts: this.state.posts.filter(el => el._id !== id)
     });
   }
-
   postList() {
     return this.state.posts.map(currentpost => {
       return (
@@ -59,13 +62,10 @@ export default class PostList extends Component {
       );
     });
   }
-
   render() {
     return (
-      <div>
-        <h1>
-          Posted Questions 
-        </h1>
+      <div style={{ fontFamily: "Optima" }}>
+        <h1>Posted Questions </h1>
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -76,9 +76,7 @@ export default class PostList extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {this.postList()}
-          </tbody>
+          <tbody>{this.postList()}</tbody>
         </table>
       </div>
     );

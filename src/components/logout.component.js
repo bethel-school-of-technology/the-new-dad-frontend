@@ -3,9 +3,8 @@ import axios from "axios";
 
 export default class Logout extends Component {
   componentDidMount() {
-    axios
-      .post("http://localhost:5000/users/logout")
-      .then(res => console.log(res));
+    document.cookie = "auth=";
+    axios.get("/users/logout").then(res => console.log(res));
   }
 
   render() {
