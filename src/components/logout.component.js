@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 export default class Logout extends Component {
-  onSubmit(e) {
-    e.preventDefault();
-    axios.post("/users/logout").then(res => console.log(res));
+  componentDidMount() {
+    document.cookie = "auth=";
+    axios.get("/users/logout").then(res => console.log(res));
   }
-
   render() {
     return (
       <div style={{ fontFamily: "optima" }}>

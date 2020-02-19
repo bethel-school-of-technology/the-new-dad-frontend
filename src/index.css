@@ -38,6 +38,7 @@ html {
   height: 100%;
   position: relative;
 }
+
 body {
   height: 100%;
   position: relative;
@@ -48,10 +49,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 .content-style {
   min-height: 100vh;
   /* will cover the 100% of viewport */
@@ -61,9 +64,11 @@ code {
   padding-bottom: 100px;
   /* height of the footer */
 }
+
 .content {
   margin-bottom: 5em;
 }
+
 .Site-footer {
   width: 100%;
   background-color: lightgray;
@@ -72,4 +77,48 @@ code {
   left: 0;
   text-align: center;
   padding: 10px 0;
+}
+
+.books {
+  text-align: center;
+}
+
+.killers {
+  width: 200px;
+  height: 300px;
+  padding: 30px;
+}
+
+.godisgood {
+  width: 200px;
+  height: 300px;
+  padding: 30px;
+}
+
+.hosting {
+  width: 260px;
+  height: 300px;
+  padding: 30px;
+}
+
+.christiandad {
+  width: 200px;
+  height: 300px;
+  padding: 30px;
+}
+
+.loveon {
+  width: 200px;
+  height: 300px;
+  padding: 30px;
+}
+
+.bethel {
+  width: 400px;
+  height: 400px;
+  text-align: center;
+}
+
+.topsource {
+  text-align: center;
 }
