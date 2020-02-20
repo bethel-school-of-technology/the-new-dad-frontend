@@ -26,6 +26,11 @@ export default class Navbar extends Component {
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
+                <a className="nav-link" href="/login">
+                  Login
+                </a>
+              </li>
+              <li className="nav-item">
                 <a className="nav-link" href="/blog">
                   Blog
                 </a>
@@ -40,16 +45,7 @@ export default class Navbar extends Component {
                   Create Account
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/login">
-                  Login
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/logout">
-                  Logout
-                </a>
-              </li>
+
               <li className="navbar-item">
                 <Link to="/createposts" className="nav-link">
                   Post Question
@@ -64,6 +60,16 @@ export default class Navbar extends Component {
                 <Link to="/spiritual" className="nav-link">
                   Spiritual
                 </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/goods" className="nav-link">
+                  Goods
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/logout">
+                  Logout
+                </a>
               </li>
             </ul>
           </div>

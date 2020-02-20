@@ -107,7 +107,7 @@ export default class CreatePosts extends Component {
               <input
                 type="submit"
                 value="Ask Your Question!"
-                className="btn btn-primary"
+                className="btn btn-success"
               />
             </div>
           </form>

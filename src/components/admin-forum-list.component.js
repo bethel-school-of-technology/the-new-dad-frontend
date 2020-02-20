@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 const Post = props => (
   <tr>
-    <td>{props.post.username}</td>
+    <td>{props.post.date.substring(0, 10)}</td>
     <td>{props.post.title}</td>
     <td>{props.post.description}</td>
-    <td>{props.post.date.substring(0, 10)}</td>
     <td>
       <Link
         to={"/editpost/" + props.post._id}
@@ -27,14 +27,19 @@ const Post = props => (
     </td>
   </tr>
 );
+
 export default class AdminForumList extends Component {
   constructor(props) {
     super(props);
+
     this.deletePost = this.deletePost.bind(this);
+
     this.state = { posts: [] };
   }
+
   componentDidMount() {
     console.log(process.env);
+
     axios
       .get("/posts/")
       .then(response => {
@@ -44,12 +49,15 @@ export default class AdminForumList extends Component {
         console.log(error);
       });
   }
+
   deletePost(id) {
     axios.delete("/posts/" + id).then(res => console.log(res.data));
+
     this.setState({
       posts: this.state.posts.filter(el => el._id !== id)
     });
   }
+
   postList() {
     return this.state.posts.map(currentpost => {
       return (
@@ -61,17 +69,18 @@ export default class AdminForumList extends Component {
       );
     });
   }
+
   render() {
     return (
       <div style={{ fontFamily: "Optima" }}>
-        <h1>Posted Questions </h1>
+        <h1>Admin Forum List </h1>
+
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>Username</th>
+              <th>Date</th>
               <th>Title</th>
               <th>Description</th>
-              <th>Date</th>
               <th>Actions</th>
             </tr>
           </thead>

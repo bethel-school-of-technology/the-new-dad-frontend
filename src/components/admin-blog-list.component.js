@@ -8,12 +8,19 @@ const Blog = props => (
     <td>{props.blog.description}</td>
     <td>{props.blog.date.substring(0, 10)}</td>
     <td>
-      <Link to={"/editblog/" + props.blog._id}>edit</Link> |{" "}
+      <Link
+        to={"/editblog/" + props.blog._id}
+        className="btn-sm btn-success btn-block text-center"
+      >
+        edit
+      </Link>
+      <br></br>
       <a
         href="#"
         onClick={() => {
           props.deleteBlog(props.blog._id);
         }}
+        className="btn-sm btn-warning"
       >
         delete
       </a>

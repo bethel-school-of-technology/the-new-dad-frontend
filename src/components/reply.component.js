@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
+import Forum from "../images/forum.jpeg";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -11,11 +12,15 @@ const ColoredLine = ({ color }) => (
     }}
   />
 );
+
 export default class Reply extends Component {
   constructor(props) {
     super(props);
+
     this.onSubmit = this.onSubmit.bind(this);
+
     this.onChangeReplies = this.onChangeReplies.bind(this);
+
     this.state = {
       post: {
         username: "",
@@ -44,35 +49,38 @@ export default class Reply extends Component {
         console.log(error);
       });
   }
+
   onChangeReplies(e) {
     this.setState({
       replies: e.target.value
     });
   }
+
   onSubmit(e) {
     e.preventDefault();
     const post = {
       replies: this.state.replies
     };
     console.log(post);
+
     axios
       .post("/posts/reply/" + this.props.match.params.id, post)
       .then(res => console.log(res.data));
     this.props.history.push("/forum");
   }
+
   render() {
     const replyList = this.state.post.replies.map((reply, index) => (
       <li key={index}>{reply.reply}</li>
     ));
+
     return (
       <div style={{ fontFamily: "optima" }}>
+        <img src={Forum} className="img-fluid" alt="banner" />
         <p></p>
         <h3>
           <em style={{ color: "green" }}>"{this.state.post.title}"</em>
         </h3>
-        <h5 style={{ color: "green" }}>
-          User: <em>{this.state.post.username}</em>
-        </h5>
         <br></br>
         <table className="table">
           <thead className="thead-light">
