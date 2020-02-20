@@ -31,7 +31,7 @@ function Footer({ children }) {
         {/* Footer Bottom */}
         <div className="footer-bottom">
           <p className="text-xs-center">
-            &copy;{new Date().getFullYear()} The New Dad - All Rights Reserved
+            &copy;{new Date().getFullYear()} The New Dad - All Rights Reserved | Contact Us: thenewdad@email.com
           </p>
         </div>
       </div>

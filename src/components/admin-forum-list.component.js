@@ -1,21 +1,29 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Forum from "../images/forum.jpeg";
 
 const Post = props => (
   <tr>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>{props.post.title}</td>
+    <td>{props.post.description}</td>
     <td>
-      <a href={"/reply/" + props.post._id} className="btn-sm btn-success">
-        View
+      <Link to={"/editpost/" + props.post._id} className="btn-sm btn-success btn-block text-center">edit</Link>{" "}
+      <br></br>
+      <a
+        href="#"
+        onClick={() => {
+          props.deletePost(props.post._id);
+        }}
+        className="btn-sm btn-warning"
+      >
+        delete
       </a>
     </td>
   </tr>
 );
 
-export default class PostList extends Component {
+export default class AdminForumList extends Component {
   constructor(props) {
     super(props);
 
@@ -60,20 +68,17 @@ export default class PostList extends Component {
   render() {
     return (
       <div style={{ fontFamily: 'Optima' }}>
-      <img src={Forum} className='img-fluid' alt="banner" />
         <h1>
-          {/* The New Dad Forum{" "} */}
-
+          Admin Forum List{" "}
         </h1>
 
         <table className="table">
           <thead className="thead-light">
             <tr>
               <th>Date</th>
-              <th>Question List | <Link to="/createposts" className="btn-sm btn-success">
-            Ask Us A Question!
-          </Link></th>
-              <th>View</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>{this.postList()}</tbody>

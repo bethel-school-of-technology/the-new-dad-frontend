@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import axios from "axios";
 import DadHold from "../images/dadhold.jpeg";
 import TheNewDad from "../images/TheNewDad.jpeg";
+import GreenLogo from "../images/greenlogo.jpeg";
 
 
 const Blog = props => (
     
     <div className="card m-4 align-center" style={{ width: '18rem' }}>
-        <img className="card-img-top" src={TheNewDad} alt="Card cap"></img>
+        <img className="card-img-top" src={GreenLogo} alt="Card cap"></img>
         <div className="card-body" style={{ fontFamily: 'Optima' }}>
             <h5 className="card-title">{props.blog.title}</h5>
             <p></p>
-            <a href={'/displayblog/' + props.blog._id}  className="btn btn-primary">Read</a>
+            <a href={'/displayblog/' + props.blog._id}  className="btn btn-success">Read</a>
         </div>
     </div>
 )
@@ -61,9 +62,9 @@ export default class BlogList extends Component {
     render() {
         
         return (
-            <div>
+            <div style={{ fontFamily: 'Optima' }}>
                 <img src={DadHold} className='img-fluid' alt="banner"/>
-                <h1 className='text-center mt-5' style={{ fontFamily: 'Optima' }}>BLOG POSTS</h1>
+                <h1 className='text-center mt-5'>THE NEW DAD BLOG</h1>
                 <div className="containter ">
                     <div className="row ml-5 align-center">
                         {this.blogList()}
