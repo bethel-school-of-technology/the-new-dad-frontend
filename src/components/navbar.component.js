@@ -60,6 +60,11 @@ export default class Navbar extends Component {
                   Forum
                 </Link>
               </li>
+              <li className="navbar-item">
+                <Link to="/spiritual" className="nav-link">
+                  Spiritual
+                </Link>
+              </li>
             </ul>
           </div>
         </nav>

@@ -34,7 +34,7 @@ export default class Spiritual extends Component {
             target="_blank"
           >
             <img src={Christiandad} className="christiandad" />
-            <p>The Christian's Dad Answer Book</p>
+            <p>The Christian Dad's Answer Book</p>
             <p>by</p>
             <p>Mike Yorkey</p>
           </a>
@@ -44,7 +44,7 @@ export default class Spiritual extends Component {
             target="_blank"
           >
             <img src={Good} className="godisgood" />
-            <p>God is Good</p>
+            <p>God is Good: He's Better Than You Think</p>
             <p>by</p>
             <p>Bill Johnson</p>
           </a>
@@ -64,7 +64,7 @@ export default class Spiritual extends Component {
             target="_blank"
           >
             <img src={Loveon} className="loveon" />
-            <p>Keeping Your Love On</p>
+            <p>Keep Your Love On</p>
             <p>by</p>
             <p>Danny Silk</p>
           </a>
