@@ -125,7 +125,7 @@ export default class Spiritual extends Component {
                 place to
               </p>
               <p>
-                watch sermons and find other resources regarding the Christain
+                watch sermons and find other resources regarding the Christian
                 faith.
               </p>
             </a>

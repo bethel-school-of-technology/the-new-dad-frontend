@@ -48,6 +48,7 @@ function App() {
         <Route path="/usercreated" component={UserCreated} />
         <Route path="/goods" component={Goods} />
         <Route path="/spiritual" component={Spiritual} />
+
         <Footer />
       </div>
     </Router>

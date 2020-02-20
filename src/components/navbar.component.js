@@ -26,45 +26,34 @@ export default class Navbar extends Component {
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <a className="nav-link" href="/login">
-                  Login
-                </a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link" href="/blog">
                   Blog
                 </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/createblog">
-                  Create Blog
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/user">
-                  Create Account
-                </a>
-              </li>
-
-              <li className="navbar-item">
-                <Link to="/createposts" className="nav-link">
-                  Post Question
-                </Link>
               </li>
               <li className="navbar-item">
                 <Link to="/forum" className="nav-link">
                   Forum
                 </Link>
               </li>
-              <li className="navbar-item">
-                <Link to="/spiritual" className="nav-link">
+              <li className="nav-item">
+                <a className="nav-link" href="/spiritual">
                   Spiritual
-                </Link>
+                </a>
               </li>
-              <li className="navbar-item">
-                <Link to="/goods" className="nav-link">
-                  Goods
-                </Link>
+              <li className="nav-item">
+                <a className="nav-link" href="/goods">
+                  DadGoods
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/user">
+                  Sign Up
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/login">
+                  Login
+                </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/logout">
