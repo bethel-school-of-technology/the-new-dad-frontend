@@ -8,9 +8,9 @@ export default class Logout extends Component {
   }
   render() {
     return (
-      <div style={{ fontFamily: "optima" }}>
+      <div style={{ fontFamily: "optima" }} className="m-4">
         <h3>You Are Now Logged Out</h3>
-        <a href="/login" className="btn btn-primary center">
+        <a href="/login" className="btn btn-success center">
           Log Back In!
         </a>
       </div>

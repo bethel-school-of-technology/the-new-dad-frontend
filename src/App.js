@@ -18,6 +18,7 @@ import Home from "./components/home.component";
 import UserCreated from "./components/user-created.component";
 import Goods from "./components/goods.component";
 import AdminForumList from "./components/admin-forum-list.component";
+import Spiritual from "./components/spiritual.component";
 
 import Footer from "./components/footer.component";
 import Forum from "./components/forum.component";
@@ -27,9 +28,8 @@ import "./index.css";
 function App() {
   return (
     <Router>
-      <div className="container content-style">
+      <div className="content-style">
         <Navbar />
-        <br />
         <Route path="/" exact component={Home} />
         <Route path="/editpost/:id" component={EditPost} />
         <Route path="/editblog/:id" component={EditBlog} />
@@ -46,6 +46,7 @@ function App() {
         <Route path="/reply/:id" component={Reply} />
         <Route path="/usercreated" component={UserCreated} />
         <Route path="/goods" component={Goods}/>
+        <Route path="/spiritual" component={Spiritual} />
 
         <Footer />
       </div>

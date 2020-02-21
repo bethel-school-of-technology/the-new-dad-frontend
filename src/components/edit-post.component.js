@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Reply = props => (
   <tr>
-    <td>{props.Array}</td>
+    <td>{props.reply.reply}</td>
       <br></br>
       <a
         href="#"
@@ -62,7 +62,7 @@ export default class EditPost extends Component {
 
   deleteReply(id) {
     axios
-      .delete("/posts/" + this.props.match.params.id)
+      .post("/posts/" + id)
       .then(res => console.log(res.data));
 
     this.setState({

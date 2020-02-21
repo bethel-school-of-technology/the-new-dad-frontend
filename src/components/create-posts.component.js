@@ -18,16 +18,16 @@ export default class CreatePosts extends Component {
       users: []
     };
   }
-  componentDidMount() {
-    console.log(document.cookie);
-    axios.get("/posts").then(response => {
-      if (response.data.length > 0) {
-        this.setState({
-          users: response.data.map(user => user.username)
-        });
-      }
-    });
-  }
+  // componentDidMount() {
+  //   console.log(document.cookie);
+  //   axios.get("/posts").then(response => {
+  //     if (response.data.length > 0) {
+  //       this.setState({
+  //         users: response.data.map(user => user.username)
+  //       });
+  //     }
+  //   });
+  // }
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
@@ -64,15 +64,17 @@ export default class CreatePosts extends Component {
           this.props.history.push("/forum");
         }
       })
-      .catch(err => alert("Oops! Something went wrong, please try again!"));
+      .catch(err => {
+        console.log(err);
+        alert("Oops! Something went wrong, please try again!")});
   }
   render() {
-    var documentCookie = document.cookie;
-    var token = documentCookie.split("Bearer ");
-    console.log(token);
-    if (token.length === 2) {
+    // var documentCookie = document.cookie;
+    // var token = documentCookie.split("Bearer ");
+    // console.log(token);
+    // if (token.length === 2) {
       return (
-        <div style={{ fontFamily: "Optima" }}>
+        <div style={{ fontFamily: "Optima" }} className="m-4">
           <h3>Ask a Question!</h3>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
@@ -112,13 +114,13 @@ export default class CreatePosts extends Component {
             </div>
           </form>
         </div>
-      );
-    } else {
-      return (
-        <div>
-          <h3>Not logged in</h3>
-        </div>
-      );
+      )};
+    //   );
+    // } else {
+    //   return (
+    //     <div>
+    //       <h3>Not logged in</h3>
+    //     </div>
+    //   );
+
     }
-  }
-}

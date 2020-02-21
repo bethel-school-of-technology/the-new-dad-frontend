@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import HomeImage from "../images/newdadhome.jpeg";
-import GoodsPic from "../images/goods.jpeg";
+import DadGoods from "../images/dadgoods.jpeg";
 
 export default class Goods extends Component {
   render() {
     return (
       <div style={{ fontFamily: "Optima" }}>
-        <img src={GoodsPic} className="img-fluid" alt="banner" />
-        <h2 className="text-center mt-5">Recommended Goods for The New Dad</h2>
+        <img src={DadGoods} className="img-fluid" alt="banner" />
+        <h2 className="text-center mt-5">RECOMMENDED GOODS FOR THE NEW DAD</h2>
 
         <h5 className="text-center mt-4">Best Diapers in the Business!</h5>
 

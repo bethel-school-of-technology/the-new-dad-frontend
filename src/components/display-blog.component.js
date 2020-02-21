@@ -40,11 +40,13 @@ export default class DisplayBlog extends Component {
       <div style={{ fontFamily: 'Optima' }}>
         <img src={Blog} className='img-fluid' alt="banner" />
         <p></p>
+        <div className="m-4">
         <h1>{this.state.blog.title}</h1>
         <br></br>
         <p>
           {this.state.blog.description}
           </p>
+          </div>
       </div>
     );
   }

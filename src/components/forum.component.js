@@ -61,12 +61,7 @@ export default class PostList extends Component {
     return (
       <div style={{ fontFamily: 'Optima' }}>
       <img src={Forum} className='img-fluid' alt="banner" />
-        <h1>
-          {/* The New Dad Forum{" "} */}
-
-        </h1>
-
-        <table className="table">
+        <table className="table " >
           <thead className="thead-light">
             <tr>
               <th>Date</th>

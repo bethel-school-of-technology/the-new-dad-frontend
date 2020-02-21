@@ -64,7 +64,7 @@ export default class CreateUsers extends Component {
   render() {
 
     return (
-      <div style={{ fontFamily: 'Optima' }}>
+      <div style={{ fontFamily: 'Optima' }}  className="m-4">
         <h3>Create an Account</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">

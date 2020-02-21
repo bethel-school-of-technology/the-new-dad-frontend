@@ -61,8 +61,8 @@ export default class blogList extends Component {
 
   render() {
     return (
-      <div style={{ fontFamily: "optima"}}>
-        <h1>Admin Blog List</h1>
+      <div style={{ fontFamily: "optima"}} >
+        <h1 className="m-3">Admin Blog List</h1>
         <table className="table">
           <thead className="thead-light">
           <th>Title</th>

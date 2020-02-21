@@ -68,7 +68,7 @@ export default class AdminForumList extends Component {
   render() {
     return (
       <div style={{ fontFamily: 'Optima' }}>
-        <h1>
+        <h1 className="m-3">
           Admin Forum List{" "}
         </h1>
 
