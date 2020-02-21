@@ -6,6 +6,7 @@ export default class Navbar extends Component {
     return (
       <div>
         <nav
+          id="navbar"
           className="navbar navbar-expand-lg navbar-dark bg-dark"
           style={{ fontFamily: "Optima" }}
         >

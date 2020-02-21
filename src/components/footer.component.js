@@ -1,4 +1,7 @@
 import React from "react";
+import Twitter from "../images/twitter.png";
+import Facebook from "../images/facebook.png";
+import Insta from "../images/insta.png";
 
 function Footer({ children }) {
   return (
@@ -6,8 +9,32 @@ function Footer({ children }) {
       {/* Footer Bottom */}
       <div className="footer-bottom">
         <p className="text-xs-center">
-          &copy;{new Date().getFullYear()} The New Dad - All Rights Reserved
+          &copy;{new Date().getFullYear()} The New Dad - All Rights Reserved |
+          Contact us at <em style={{ color: "blue" }}>thenewdad@gmail.com</em>
         </p>
+        <div className="nav justify-content-center">
+          <a
+            style={{ display: "table-cell" }}
+            href="https://www.facebook.com/bethelschooloftechnology/"
+            target="_blank"
+          >
+            <img src={Facebook} className="icons" />
+          </a>
+          <a
+            style={{ display: "table-cell" }}
+            href="https://twitter.com/betheltech_?lang=en"
+            target="_blank"
+          >
+            <img src={Twitter} className="icons" />
+          </a>
+          <a
+            style={{ display: "table-cell" }}
+            href="https://www.instagram.com/betheltech/?hl=en"
+            target="_blank"
+          >
+            <img src={Insta} className="icons" />
+          </a>
+        </div>
       </div>
     </footer>
   );

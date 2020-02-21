@@ -24,14 +24,12 @@ code {
     monospace;
 }
 
-.content-style {
+.main-wrapper {
   min-height: 100vh;
-  /* will cover the 100% of viewport */
   overflow: hidden;
   display: block;
   position: relative;
   padding-bottom: 100px;
-  /* height of the footer */
 }
 
 .content {
@@ -48,38 +46,14 @@ code {
   padding: 10px 0;
 }
 
-.books {
+.spiritual {
   text-align: center;
 }
 
-.killers {
-  width: 200px;
-  height: 300px;
-  padding: 30px;
-}
-
-.godisgood {
-  width: 200px;
-  height: 300px;
-  padding: 30px;
-}
-
-.hosting {
-  width: 260px;
-  height: 300px;
-  padding: 30px;
-}
-
-.christiandad {
-  width: 200px;
-  height: 300px;
-  padding: 30px;
-}
-
-.loveon {
-  width: 200px;
-  height: 300px;
-  padding: 30px;
+.book {
+  width: 150px;
+  height: 250px;
+  margin: 30px;
 }
 
 .bethel {
@@ -90,4 +64,10 @@ code {
 
 .topsource {
   text-align: center;
+}
+
+.icons {
+  width: 35px;
+  height: 35px;
+  margin: 5px;
 }

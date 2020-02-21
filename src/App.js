@@ -28,9 +28,8 @@ import "./index.css";
 function App() {
   return (
     <Router>
-      <div className="container content-style">
+      <div className="main-wrapper">
         <Navbar />
-        <br />
         <Route path="/" exact component={Home} />
         <Route path="/editpost/:id" component={EditPost} />
         <Route path="/editblog/:id" component={EditBlog} />
