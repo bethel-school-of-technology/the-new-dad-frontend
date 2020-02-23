@@ -168,7 +168,7 @@ export default class EditPost extends Component {
     // ));
 
     return (
-      <div>
+      <div className="m-3">
         <h3>Edit Post</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -219,7 +219,7 @@ export default class EditPost extends Component {
             <input
               type="submit"
               value="Edit Question"
-              className="btn btn-primary"
+              className="btn btn-success"
             />
           </div>
         </form>

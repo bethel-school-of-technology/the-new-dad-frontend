@@ -23,9 +23,8 @@ export default class Reply extends Component {
 
     this.state = {
       post: {
-        username: "",
         title: "",
-        description: "",
+        name: "",
         date: new Date(),
         replies: []
       }
@@ -37,15 +36,14 @@ export default class Reply extends Component {
       .then(response => {
         this.setState({
           post: {
-            username: response.data.username,
             title: response.data.title,
-            description: response.data.description,
+            name: response.data.name,
             date: new Date(response.data.date),
             replies: response.data.replies
           }
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -53,7 +51,7 @@ export default class Reply extends Component {
   onChangeReplies(e) {
     this.setState({
       replies: e.target.value
-  });
+    });
   }
 
   onSubmit(e) {
@@ -69,47 +67,62 @@ export default class Reply extends Component {
         post
       )
       .then(res => console.log(res.data));
-      this.props.history.push("/forum");
+    this.props.history.push("/forum");
   }
 
   render() {
     const replyList = this.state.post.replies.map((reply, index) => (
       <li key={index}>{reply.reply}</li>
     ));
-
-    return (
-      <div style={{ fontFamily: "optima"}}>
-      <img src={Forum} className='img-fluid' alt="banner" />
-        <p></p>
-        <h3>
-        <em style={{ color: "green" }}>"{this.state.post.title}"</em>
-        </h3>
-        <h5 style={{ color: "green" }}>
-          User:{" "}
-          <em >{this.state.post.username}</em>
-        </h5>
-        <br></br>
-        <table className="table">
-          <thead className="thead-light">
-            <h4>Replies:</h4>
-          </thead>
-          <tbody>{replyList}</tbody>
-        </table>
-        <h3>Reply:</h3>{" "}
-        <form className="btn btn-primary" onSubmit={this.onSubmit}>
-          <textarea
-            name="text"
-            onChange={this.onChangeReplies}
-            cols="50"
-            rows="3"
-            maxLength="280"
-            placeholder="Write a response and leave your name!"
-          ></textarea>
-          <br />
-          <input type="submit" value="Submit!" className="btn btn-success" />
-        </form>
-        <ColoredLine color="black" />
-      </div>
-    );
+    var documentCookie = document.cookie;
+    var token = documentCookie.split("Bearer ");
+    console.log(token);
+    if (token.length === 2) {
+      return (
+        <div style={{ fontFamily: "optima" }}>
+          <img src={Forum} className='img-fluid' alt="banner" />
+          <div className="m-3">
+            <p></p>
+            <h3>
+              <em style={{ color: "green" }}>"{this.state.post.title}"</em>
+            </h3>
+            <h5 style={{ color: "green" }}>
+              <em>-{" "}</em>
+              <em >{this.state.post.name}</em>
+            </h5>
+            <br></br>
+            <table className="table">
+              <thead className="thead-light">
+                <h4>Replies:</h4>
+              </thead>
+              <tbody>{replyList}</tbody>
+            </table>
+            <h5>Reply:</h5>{" "}
+            <form className="btn btn-success" onSubmit={this.onSubmit}>
+              <textarea
+                name="text"
+                onChange={this.onChangeReplies}
+                cols="50"
+                rows="3"
+                maxLength="280"
+                placeholder="Write a response and leave your name!"
+              ></textarea>
+              <br />
+              <input type="submit" value="Submit!" className="btn btn-success" />
+            </form>
+            <ColoredLine color="black" />
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div style={{ fontFamily: "Optima" }} className="m-3">
+          <h3>Please log in to ask a question!</h3>
+          <a href="/login" className="btn btn-success center">
+            Login
+        </a>
+        </div>
+      );
+    }
   }
 }

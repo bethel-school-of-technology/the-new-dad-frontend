@@ -51,7 +51,15 @@ export default class Login extends Component {
           console.log(response);
           alert("Invalid password! Please try again.");
         }
-        if (response.data !== "Wrong password" && response.status === 200) {
+        if (response.data.username === "Dadmin" && response.data !== "Wrong password" && response.status === 200) {
+          console.log(response);
+          console.log(response.headers.authorization);
+          const authCookie = "auth=" + response.headers.authorization;
+          document.cookie = authCookie;
+          alert("You are logged in as Admin!");
+          this.props.history.push("/adminbloglist");
+        }
+        else if (response.data !== "Wrong password" && response.status === 200) {
           console.log(response);
           console.log(response.headers.authorization);
           const authCookie = "auth=" + response.headers.authorization;

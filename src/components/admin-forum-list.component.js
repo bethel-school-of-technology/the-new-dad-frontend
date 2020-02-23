@@ -70,6 +70,7 @@ export default class AdminForumList extends Component {
       <div style={{ fontFamily: 'Optima' }}>
         <h1 className="m-3">
           Admin Forum List{" "}
+          <a href="/adminbloglist" className="m-3 btn btn-success">Admin Blog List</a>
         </h1>
 
         <table className="table">
