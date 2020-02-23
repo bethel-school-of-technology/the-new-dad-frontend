@@ -8,7 +8,9 @@ const Blog = props => (
     <td>{props.blog.description}</td>
     <td>{props.blog.date.substring(0, 10)}</td>
     <td>
-      <Link to={'/editblog/' + props.blog._id}>edit</Link> | <a href='#' onClick={() => { props.deleteBlog(props.blog._id) }}>delete</a>
+      <Link to={'/editblog/' + props.blog._id} className="btn-sm btn-success btn-block text-center">edit</Link>
+      <br></br>
+      <a href='#' onClick={() => { props.deleteBlog(props.blog._id) }} className="btn-sm btn-warning">delete</a>
     </td>
   </tr>
 )
@@ -60,7 +62,8 @@ export default class blogList extends Component {
   render() {
     return (
       <div style={{ fontFamily: "optima"}}>
-        <h1>Admin Blog List</h1>
+        <h1 className="m-3">Admin Blog List
+        <a href="/createblog" className="m-3 btn btn-success">Create New Blog</a><a href="/adminforumlist" className="m-3 btn btn-success">Admin Forum List</a></h1>
         <table className="table">
           <thead className="thead-light">
           <th>Title</th>

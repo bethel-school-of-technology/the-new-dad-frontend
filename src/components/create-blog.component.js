@@ -64,10 +64,9 @@ export default class CreateBlogs extends Component {
     });
   }
 
-
   render() {
     return (
-      <div style={{ fontFamily: 'Optima' }}>
+      <div style={{ fontFamily: 'Optima' }} className="m-4">
         <h3>Create New Blog</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -102,7 +101,7 @@ export default class CreateBlogs extends Component {
             <input
               type="submit"
               value="Create Blog"
-              className="btn btn-primary"
+              className="btn btn-success"
             />
           </div>
         </form>

@@ -16,11 +16,23 @@ export default class Navbar extends Component {
               <li className="nav-item">
                 <a className="nav-link" href="/blog">Blog</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/createblog">Create Blog</a>
+              <li className="navbar-item">
+                <Link to="/forum" className="nav-link">
+                  Forum
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/user">Create Account</a>
+                <a className="nav-link" href="/spiritual">
+                  Spiritual
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/goods">
+                  DadGoods
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/user">Sign Up</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/login">
@@ -31,16 +43,6 @@ export default class Navbar extends Component {
                 <a className="nav-link" href="/logout">
                   Logout
                 </a>
-              </li>
-              <li className="navbar-item">
-                <Link to="/createposts" className="nav-link">
-                  Post Question
-                </Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/forum" className="nav-link">
-                  Forum
-                </Link>
               </li>
             </ul>
           </div>

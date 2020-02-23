@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Forum from "../images/forum.jpeg";
 
 const Post = props => (
   <tr>
-    <td>{props.post.username}</td>
-    <td>{props.post.title}</td>
-    <td>{props.post.description}</td>
     <td>{props.post.date.substring(0, 10)}</td>
+    <td>{props.post.title}</td>
     <td>
-      <Link to={"/editpost/" + props.post._id}>edit</Link> | <a
-        href="#" onClick={() => { props.deletePost(props.post._id) }}>delete</a>
-        <a href={"/reply/" + props.post._id} className="btn btn-primary">Reply</a>
+      <a href={"/reply/" + props.post._id} className="btn-sm btn-success">
+        View
+      </a>
     </td>
   </tr>
 );
@@ -21,7 +20,7 @@ export default class PostList extends Component {
     super(props);
 
     this.deletePost = this.deletePost.bind(this);
-    
+
     this.state = { posts: [] };
   }
 
@@ -39,9 +38,7 @@ export default class PostList extends Component {
   }
 
   deletePost(id) {
-    axios
-      .delete("/posts/" + id)
-      .then(res => console.log(res.data));
+    axios.delete("/posts/" + id).then(res => console.log(res.data));
 
     this.setState({
       posts: this.state.posts.filter(el => el._id !== id)
@@ -62,23 +59,19 @@ export default class PostList extends Component {
 
   render() {
     return (
-      <div>
-        <h1>
-          Posted Questions 
-        </h1>
-        <table className="table">
+      <div style={{ fontFamily: 'Optima' }}>
+      <img src={Forum} className='img-fluid' alt="banner" />
+        <table className="table " >
           <thead className="thead-light">
             <tr>
-              <th>Username</th>
-              <th>Title</th>
-              <th>Description</th>
               <th>Date</th>
-              <th>Actions</th>
+              <th>Question List | <Link to="/createposts" className="btn-sm btn-success">
+            Ask Us A Question!
+          </Link></th>
+              <th>View</th>
             </tr>
           </thead>
-          <tbody>
-            {this.postList()}
-          </tbody>
+          <tbody>{this.postList()}</tbody>
         </table>
       </div>
     );

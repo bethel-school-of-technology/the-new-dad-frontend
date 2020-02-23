@@ -6,37 +6,34 @@ import "react-datepicker/dist/react-datepicker.css";
 export default class CreatePosts extends Component {
   constructor(props) {
     super(props);
-
-    this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeName = this.onChangeName.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
     this.state = {
-      username: "",
       title: "",
-      description: "",
+      name: "",
       date: new Date(),
       users: []
     };
   }
 
-  componentDidMount() {
-    axios.get("/users/").then(response => {
-      if (response.data.length > 0) {
-        this.setState({
-          users: response.data.map(user => user.username)
-        });
-      }
-    });
-  }
+  // componentDidMount() {
+  //   console.log(document.cookie);
+  //   axios.get("/posts").then(response => {
+  //     if (response.data.length > 0) {
+  //       this.setState({
+  //         users: response.data.map(user => user.username)
+  //       });
+  //     }
+  //   });
+  // }
 
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value
-    });
-  }
+  // onChangeUsername(e) {
+  //   this.setState({
+  //     username: e.target.value
+  //   });
+  // }
 
   onChangeTitle(e) {
     this.setState({
@@ -44,9 +41,9 @@ export default class CreatePosts extends Component {
     });
   }
 
-  onChangeDescription(e) {
+  onChangeName(e) {
     this.setState({
-      description: e.target.value
+      name: e.target.value
     });
   }
 
@@ -55,85 +52,87 @@ export default class CreatePosts extends Component {
       date: date
     });
   }
-  
+
   onSubmit(e) {
     e.preventDefault();
-
     const post = {
-      username: this.state.username,
       title: this.state.title,
-      description: this.state.description,
+      name: this.state.name,
       date: this.state.date
     };
     axios
-      .post("/posts/add", post)
+      .post("/posts/add", post, {})
       .then(res => {
         if (res.status === 200) {
-          console.log('Post Created!');
-        this.props.history.push("/forum");
-      }})
-      .catch(err => alert('Oops! Something went wrong, please try again!'));
+          console.log("Post Created!");
+          this.props.history.push("/forum");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Oops! Something went wrong, please try again!")
+      });
   }
 
   render() {
-    return (
-      <div style={{ fontFamily: 'Optima' }}>
-        <h3>Ask a Question!</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Username: </label>
-            <select
-              ref="userInput"
-              required
-              className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-            >
-              {this.state.users.map(function(user) {
-                return (
-                  <option key={user} value={user}>
-                    {user}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Title:</label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              value={this.state.title}
-              onChange={this.onChangeTitle}
-            />
-          </div>
-          <div className="form-group">
-            <label>Description:</label>
-            <textarea
-              className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
-            ></textarea>
-          </div>
-          <div className="form-group">
-            <label>Date:</label>
-            <div>
-              <DatePicker
-                selected={this.state.date}
-                onChange={this.onChangeDate}
+    var documentCookie = document.cookie;
+    var token = documentCookie.split("Bearer ");
+    console.log(token);
+    if (token.length === 2) {
+      return (
+        <div style={{ fontFamily: "Optima" }} className="m-4">
+          <h3>Ask a Question!</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Your Question:</label>
+              <input
+                placeholder="Please be concise and direct"
+                type="text"
+                required
+                className="form-control"
+                value={this.state.title}
+                onChange={this.onChangeTitle}
               />
             </div>
-          </div>
-          <div className="form-group">
-            <input
-              type="submit"
-              value="Ask Your Question!"
-              className="btn btn-primary"
-            />
-          </div>
-        </form>
-      </div>
-    );
+            <div className="form-group">
+              <label>Your Name:</label>
+              <input
+                className="form-control"
+                placeholder="Please enter your name"
+                type="text"
+                required
+                value={this.state.name}
+                onChange={this.onChangeName}
+              />
+            </div>
+            <div className="form-group">
+              <label>Date:</label>
+              <div>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={this.onChangeDate}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <input
+                type="submit"
+                value="Ask Your Question!"
+                className="btn btn-success"
+              />
+            </div>
+          </form>
+        </div>
+      )
+    } else {
+      return (
+        <div style={{ fontFamily: "Optima" }} className="m-3">
+          <h3>Please log in to ask a question!</h3>
+          <a href="/login" className="btn btn-success center">
+          Login
+        </a>
+        </div>
+      );
+    }
   }
 }
