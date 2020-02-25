@@ -10,7 +10,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,17 +20,16 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 .content-style {
   min-height: 100vh;
-  /* will cover the 100% of viewport */
   overflow: hidden;
   display: block;
   position: relative;
   padding-bottom: 100px;
-  /* height of the footer */
 }
 
 html {
@@ -69,4 +70,30 @@ code {
   left: 0;
   text-align: center;
   padding: 10px 0;
+}
+
+.spiritual {
+  text-align: center;
+}
+
+.book {
+  width: 150px;
+  height: 250px;
+  margin: 30px;
+}
+
+.bethel {
+  width: 400px;
+  height: 400px;
+  text-align: center;
+}
+
+.topsource {
+  text-align: center;
+}
+
+.icons {
+  width: 35px;
+  height: 35px;
+  margin: 5px;
 }

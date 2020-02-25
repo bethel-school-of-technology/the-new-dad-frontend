@@ -3,45 +3,67 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+const Reply = props => (
+  <tr>
+    <td>{props.reply.reply}</td>
+      <br></br>
+      <a
+        href="#"
+        onClick={() => {
+          props.deleteReply(props.reply._id);
+        }}
+        className="btn-sm btn-warning"
+      >
+        delete
+      </a>
+  </tr>
+);
+
 export default class EditPost extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeName = this.onChangeName.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
+    // this.onChangeReplies = this.onChangeReplies.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.deleteReply = this.deleteReply.bind(this);
 
     this.state = {
-      username: "",
       title: "",
-      description: "",
+      name: "",
       date: new Date(),
-      users: []
+      replies: []
     };
   }
 
   componentDidMount() {
+    console.log(process.env);
+
     axios
       .get("/posts/" + this.props.match.params.id)
       .then(response => {
         console.log(response.data);
         this.setState({
-          username: response.data.username,
           title: response.data.title,
-          description: response.data.description,
-          date: new Date(response.data.date)
+          name: response.data.name,
+          date: new Date(response.data.date),
+          replies: response.data.replies
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
-    }
-  
-  onChangeUsername(e) {
+  }
+
+  deleteReply(id) {
+    axios
+      .post("/posts/" + id)
+      .then(res => console.log(res.data));
+
     this.setState({
-      username: e.target.value
+      posts: this.state.replies.filter(el => el._id !== id)
     });
   }
 
@@ -50,10 +72,10 @@ export default class EditPost extends Component {
       title: e.target.value
     });
   }
-  
-  onChangeDescription(e) {
+
+  onChangeName(e) {
     this.setState({
-      description: e.target.value
+      name: e.target.value
     });
   }
 
@@ -63,14 +85,20 @@ export default class EditPost extends Component {
     });
   }
 
+  // onChangeReplies(e) {
+  //   this.setState({
+  //     replies: e.target.value
+  //   });
+  // }
+
   onSubmit(e) {
     e.preventDefault();
 
     const post = {
-      username: this.state.username,
       title: this.state.title,
-      description: this.state.description,
-      date: this.state.date
+      name: this.state.name,
+      date: this.state.date,
+      replies: this.state.replies
     };
 
     console.log(post);
@@ -79,44 +107,59 @@ export default class EditPost extends Component {
       .post("/posts/update/" + this.props.match.params.id, post)
       .then(response => {
         console.log(response);
-      this.props.history.push("/forum");
+        this.props.history.push("/adminforumlist");
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Something is bogus');
       });
+  }
+
+  // deleteReply(id) {
+  //   axios.delete("/posts/" + id).then(res => console.log(res.data));
+
+  //   this.setState({
+  //     replies: this.state.replies.filter(el => el._id !== id)
+  //   });
+  // }
+
+  replyList() {
+    return this.state.replies.map((reply, index) => {
+      return (
+          <Reply
+            reply={reply}
+            deleteReply={this.deleteReply}
+            key={reply._id}
+          />
+      );
+    });
   }
 
 
   render() {
+
     return (
-      <div>
+      <div className="m-3">
         <h3>Edit Post</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username: </label>
-            <input
-              ref="userInput"
-              required
-              className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-            />
-          </div>
-          <div className="form-group">
             <label>Title:</label>
-            <input
+            <textarea
               type="text"
               required
               className="form-control"
               value={this.state.title}
               onChange={this.onChangeTitle}
             />
-            </div>
+          </div>
           <div className="form-group">
-            <label>Description:</label>
+            <label>Name:</label>
             <input
               type="text"
               required
               className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
+              value={this.state.name}
+              onChange={this.onChangeName}
             />
           </div>
           <div className="form-group">
@@ -128,11 +171,14 @@ export default class EditPost extends Component {
               />
             </div>
           </div>
+          <table className="table">
+            <tbody>{this.replyList()}</tbody>
+          </table>
           <div className="form-group">
             <input
               type="submit"
               value="Edit Question"
-              className="btn btn-primary"
+              className="btn btn-success"
             />
           </div>
         </form>
