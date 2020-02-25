@@ -77,7 +77,7 @@ export default class EditBlog extends Component {
 
   render() {
     return (
-      <div>
+      <div className="m-3" style={{ fontFamily: "optima"}}>
         <h3>Edit Blog</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -91,8 +91,8 @@ export default class EditBlog extends Component {
             />
             </div>
           <div className="form-group">
-            <label>Description:</label>
-            <input
+            <label>Body:</label>
+            <textarea
               type="text"
               required
               className="form-control"
@@ -113,7 +113,7 @@ export default class EditBlog extends Component {
             <input
               type="submit"
               value="Edit Blog"
-              className="btn btn-primary"
+              className="btn btn-success"
             />
           </div>
         </form>
