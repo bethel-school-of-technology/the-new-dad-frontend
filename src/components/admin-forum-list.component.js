@@ -6,7 +6,6 @@ const Post = props => (
   <tr>
     <td>{props.post.date.substring(0, 10)}</td>
     <td>{props.post.title}</td>
-    <td>{props.post.description}</td>
     <td>
       <Link to={"/editpost/" + props.post._id} className="btn-sm btn-success btn-block text-center">edit</Link>{" "}
       <br></br>
@@ -15,7 +14,7 @@ const Post = props => (
         onClick={() => {
           props.deletePost(props.post._id);
         }}
-        className="btn-sm btn-warning"
+        className="btn-sm btn-block btn-warning"
       >
         delete
       </a>
@@ -72,13 +71,11 @@ export default class AdminForumList extends Component {
           Admin Forum List{" "}
           <a href="/adminbloglist" className="m-3 btn btn-success">Admin Blog List</a>
         </h1>
-
         <table className="table">
           <thead className="thead-light">
             <tr>
               <th>Date</th>
-              <th>Title</th>
-              <th>Description</th>
+              <th>Question</th>
               <th>Actions</th>
             </tr>
           </thead>

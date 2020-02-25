@@ -4,16 +4,28 @@ import axios from "axios";
 
 const Blog = props => (
   <tr>
-    <td>{props.blog.title}</td>
-    <td>{props.blog.description}</td>
     <td>{props.blog.date.substring(0, 10)}</td>
-    <td>
-      <Link to={'/editblog/' + props.blog._id} className="btn-sm btn-success btn-block text-center">edit</Link>
-      <br></br>
-      <a href='#' onClick={() => { props.deleteBlog(props.blog._id) }} className="btn-sm btn-warning">delete</a>
+    <td>{props.blog.title}</td>
+    <td className="text-center">
+      <Link
+        to={"/editblog/" + props.blog._id}
+        className="btn-sm btn-success text-center"
+      >
+        edit
+      </Link>
+     <p></p>
+      <a
+        href="#"
+        onClick={() => {
+          props.deleteBlog(props.blog._id);
+        }}
+        className="btn-sm btn-warning text-center"
+      >
+        delete
+      </a>
     </td>
   </tr>
-)
+);
 
 export default class blogList extends Component {
   constructor(props) {
@@ -38,9 +50,7 @@ export default class blogList extends Component {
   }
 
   deleteBlog(id) {
-    axios
-      .delete("/blogs/" + id)
-      .then(res => console.log(res.data));
+    axios.delete("/blogs/" + id).then(res => console.log(res.data));
 
     this.setState({
       blogs: this.state.blogs.filter(el => el._id !== id)
@@ -61,19 +71,25 @@ export default class blogList extends Component {
 
   render() {
     return (
-      <div style={{ fontFamily: "optima"}}>
-        <h1 className="m-3">Admin Blog List
-        <a href="/createblog" className="m-3 btn btn-success">Create New Blog</a><a href="/adminforumlist" className="m-3 btn btn-success">Admin Forum List</a></h1>
+      <div style={{ fontFamily: "optima" }}>
+        <h1 className="m-3">
+          Admin Blog List{" "}
+          <a href="/createblog" className="m-3 btn btn-success">
+            Create New Blog
+          </a>
+          <a href="/adminforumlist" className="m-3 btn btn-success">
+            Admin Forum List
+          </a>
+        </h1>
         <table className="table">
           <thead className="thead-light">
-          <th>Title</th>
-          <th>Body</th>
-          <th>Date</th>
-          <th></th>
+            <tr>
+              <th>Date</th>
+              <th>Title</th>
+              <th className="text-center">Actions</th>
+            </tr>
           </thead>
-          <tbody>
-              {this.blogList()}
-          </tbody>
+          <tbody>{this.blogList()}</tbody>
         </table>
       </div>
     );
