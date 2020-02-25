@@ -117,7 +117,7 @@ export default class Reply extends Component {
     } else {
       return (
         <div style={{ fontFamily: "Optima" }} className="m-3">
-          <h3>Please log in to ask a question!</h3>
+          <h3>Please log in to view!</h3>
           <a href="/login" className="btn btn-success center">
             Login
         </a>
