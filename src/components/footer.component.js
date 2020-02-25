@@ -9,7 +9,7 @@ function Footer({ children }) {
       <div className="footer-bottom">
         <p className="text-xs-center">
           &copy;{new Date().getFullYear()} The New Dad - All Rights Reserved |
-          Contact us at <em style={{ color: "blue" }}>thenewdad@gmail.com</em>
+          Contact us at <a href="mailto:thenewdad@gmail.com">thenewdad@gmail.com</a>
         </p>
         <div className="nav justify-content-center">
           <a
