@@ -97,7 +97,7 @@ export default class Reply extends Component {
               </thead>
               <tbody>{replyList}</tbody>
             </table>
-            <h5>Reply:</h5>{" "}
+            <h5>Join the Conversation:</h5>{" "}
             <form className="btn btn-success" onSubmit={this.onSubmit}>
               <textarea
                 name="text"

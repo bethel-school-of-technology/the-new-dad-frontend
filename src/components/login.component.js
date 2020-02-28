@@ -14,30 +14,7 @@ export default class Login extends Component {
       [name]: value
     });
   };
-  // onSubmit = event => {
-  //   event.preventDefault();
-  //   axios
-  //     .post("/users/login", {
-  //       method: "POST",
-  //       body: JSON.stringify(this.state),
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       }
-  //     })
-  //     .then(res => {
-  //       console.log(res);
-  //       if (res.status === 200) {
-  //         this.props.history.push("/");
-  //       } else {
-  //         const error = new Error(res.error);
-  //         throw error;
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       alert("Error logging in please try again");
-  //     });
-  // };
+
   onSubmit = event => {
     event.preventDefault();
     const login = {
@@ -54,7 +31,7 @@ export default class Login extends Component {
         if (response.data.username === "Dadmin" && response.data !== "Wrong password" && response.status === 200) {
           console.log(response);
           console.log(response.headers.authorization);
-          const authCookie = "auth=" + response.headers.authorization;
+          const authCookie ="dadmin=" + response.headers.authorization;
           document.cookie = authCookie;
           alert("You are logged in as Admin!");
           this.props.history.push("/adminbloglist");

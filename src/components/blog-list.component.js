@@ -59,7 +59,7 @@ export default class BlogList extends Component {
     }
 
     render() {
-        
+    
         return (
             <div style={{ fontFamily: 'Optima' }}>
                 <img src={DadHold} className='img-fluid' alt="banner"/>

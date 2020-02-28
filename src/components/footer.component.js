@@ -4,7 +4,7 @@ import Facebook from "../images/facebook.png";
 import Insta from "../images/insta.png";
 function Footer({ children }) {
   return (
-    <footer className="Site-footer">
+    <footer style={{ fontFamily: "Optima" }} className="Site-footer">
       {/* Footer Bottom */}
       <div className="footer-bottom">
         <p className="text-xs-center">

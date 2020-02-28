@@ -15,8 +15,7 @@ export default class EditBlog extends Component {
     this.state = {
       title: "",
       description: "",
-      date: new Date(),
-      users: []
+      date: new Date()
     };
   }
 
@@ -31,7 +30,7 @@ export default class EditBlog extends Component {
           date: new Date(response.data.date)
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -41,7 +40,7 @@ export default class EditBlog extends Component {
       title: e.target.value
     });
   }
-  
+
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
@@ -69,54 +68,68 @@ export default class EditBlog extends Component {
       .post("/blogs/update/" + this.props.match.params.id, blog)
       .then(response => {
         console.log(response);
-      this.props.history.push("/adminbloglist");
+        this.props.history.push("/adminbloglist");
       });
 
   }
 
   render() {
-    return (
-      <div className="m-3" style={{ fontFamily: "optima"}}>
-        <h3>Edit Blog</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Title:</label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              value={this.state.title}
-              onChange={this.onChangeTitle}
-            />
-            </div>
-          <div className="form-group">
-            <label>Body:</label>
-            <textarea
-              type="text"
-              required
-              className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
-            />
-          </div>
-          <div className="form-group">
-            <label>Date:</label>
-            <div>
-              <DatePicker
-                selected={this.state.date}
-                onChange={this.onChangeDate}
+    var documentCookie = document.cookie;
+    var token = documentCookie.split("Bearer ");
+    console.log(token);
+    if (token.length === 2 && token.includes("dadmin=") || token.includes("auth=; dadmin=")) {
+      return (
+        <div className="m-3" style={{ fontFamily: "optima" }}>
+          <h3>Edit Blog</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Title:</label>
+              <input
+                type="text"
+                required
+                className="form-control"
+                value={this.state.title}
+                onChange={this.onChangeTitle}
               />
             </div>
-          </div>
-          <div className="form-group">
-            <input
-              type="submit"
-              value="Edit Blog"
-              className="btn btn-success"
-            />
-          </div>
-        </form>
-      </div>
-    );
+            <div className="form-group">
+              <label>Body:</label>
+              <textarea
+                type="text"
+                required
+                className="form-control"
+                value={this.state.description}
+                onChange={this.onChangeDescription}
+              />
+            </div>
+            <div className="form-group">
+              <label>Date:</label>
+              <div>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={this.onChangeDate}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <input
+                type="submit"
+                value="Edit Blog"
+                className="btn btn-success"
+              />
+            </div>
+          </form>
+        </div>
+      );
+    } else {
+      return (
+        <div style={{ fontFamily: "Optima" }} className="m-3">
+          <h3>Oops! You do not have access!</h3>
+          <a href="/login" className="btn btn-success center">
+            Login
+        </a>
+        </div>
+      );
+    }
   }
 }
