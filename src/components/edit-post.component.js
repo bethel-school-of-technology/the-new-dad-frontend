@@ -172,6 +172,7 @@ export default class EditPost extends Component {
             </div>
           </div>
           <table className="table">
+            <label>Replies:</label>
             <tbody>{this.replyList()}</tbody>
           </table>
           <div className="form-group">
