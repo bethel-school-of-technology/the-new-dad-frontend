@@ -85,12 +85,6 @@ export default class EditPost extends Component {
     });
   }
 
-  // onChangeReplies(e) {
-  //   this.setState({
-  //     replies: e.target.value
-  //   });
-  // }
-
   onSubmit(e) {
     e.preventDefault();
 
@@ -175,6 +169,7 @@ export default class EditPost extends Component {
             </div>
           </div>
           <table className="table">
+            <label>Replies:</label>
             <tbody>{this.replyList()}</tbody>
           </table>
           <div className="form-group">
