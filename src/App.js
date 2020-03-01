@@ -14,10 +14,11 @@ import CreateUsers from "./components/create-user.component";
 import BlogList from "./components/blog-list.component";
 import DisplayBlog from "./components/display-blog.component";
 import AdminBlogList from "./components/admin-blog-list.component";
+import AdminForumList from "./components/admin-forum-list.component";
+import AdminLogout from "./components/admin-logout.component";
 import Home from "./components/home.component";
 import UserCreated from "./components/user-created.component";
 import Goods from "./components/goods.component";
-import AdminForumList from "./components/admin-forum-list.component";
 import Spiritual from "./components/spiritual.component";
 
 import Footer from "./components/footer.component";
@@ -41,6 +42,7 @@ function App() {
         <Route path="/displayblog/:id" component={DisplayBlog} />
         <Route path="/adminbloglist" component={AdminBlogList} />
         <Route path="/adminforumlist" component={AdminForumList} />
+        <Route path="/adminlogout" component={AdminLogout} />
         <Route path="/createposts" exact component={CreatePosts} />
         <Route path="/forum" component={Forum} />
         <Route path="/reply/:id" component={Reply} />

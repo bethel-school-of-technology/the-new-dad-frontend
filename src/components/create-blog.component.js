@@ -52,8 +52,9 @@ export default class CreateBlogs extends Component {
       .then(res => {
         if (res.status === 200) {
           console.log('Blog Created!');
-        this.props.history.push("/blog");
-      }})
+          this.props.history.push("/blog");
+        }
+      })
       .catch(err => alert('Error, blog not created!'));
 
 
@@ -65,47 +66,61 @@ export default class CreateBlogs extends Component {
   }
 
   render() {
-    return (
-      <div style={{ fontFamily: 'Optima' }} className="m-4">
-        <h3>Create New Blog</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Title:</label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              value={this.state.title}
-              onChange={this.onChangeTitle}
-            />
-          </div>
-          <div className="form-group">
-            <label>Body:</label>
-            <textarea
-              className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
-            ></textarea>
-          </div>
-          <div className="form-group">
-            <label>Date:</label>
-            <div>
-              <DatePicker
-                selected={this.state.date}
-                onChange={this.onChangeDate}
+    var documentCookie = document.cookie;
+    var token = documentCookie.split("Bearer ");
+    console.log(token);
+    if (token.length === 2 && token.includes("dadmin=") || token.includes("auth=; dadmin=")) {
+      return (
+        <div style={{ fontFamily: 'Optima' }} className="m-4">
+          <h3>Create New Blog</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Title:</label>
+              <input
+                type="text"
+                required
+                className="form-control"
+                value={this.state.title}
+                onChange={this.onChangeTitle}
               />
             </div>
-          </div>
+            <div className="form-group">
+              <label>Body:</label>
+              <textarea
+                className="form-control"
+                value={this.state.description}
+                onChange={this.onChangeDescription}
+              ></textarea>
+            </div>
+            <div className="form-group">
+              <label>Date:</label>
+              <div>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={this.onChangeDate}
+                />
+              </div>
+            </div>
 
-          <div className="form-group">
-            <input
-              type="submit"
-              value="Create Blog"
-              className="btn btn-success"
-            />
-          </div>
-        </form>
-      </div>
-    );
+            <div className="form-group">
+              <input
+                type="submit"
+                value="Create Blog"
+                className="btn btn-success"
+              />
+            </div>
+          </form>
+        </div>
+      );
+    } else {
+      return (
+        <div style={{ fontFamily: "Optima" }} className="m-3">
+          <h3>Oops! You do not have access!</h3>
+          <a href="/login" className="btn btn-success center">
+            Login
+        </a>
+        </div>
+      );
+    }
   }
 }

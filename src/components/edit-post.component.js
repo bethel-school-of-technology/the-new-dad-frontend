@@ -85,12 +85,6 @@ export default class EditPost extends Component {
     });
   }
 
-  // onChangeReplies(e) {
-  //   this.setState({
-  //     replies: e.target.value
-  //   });
-  // }
-
   onSubmit(e) {
     e.preventDefault();
 
@@ -137,7 +131,10 @@ export default class EditPost extends Component {
 
 
   render() {
-
+    var documentCookie = document.cookie;
+    var token = documentCookie.split("Bearer ");
+    console.log(token);
+    if (token.length === 2 && token.includes("dadmin=") || token.includes("auth=; dadmin=")) {
     return (
       <div className="m-3">
         <h3>Edit Post</h3>
@@ -185,5 +182,15 @@ export default class EditPost extends Component {
         </form>
       </div>
     );
+  } else {
+    return (
+      <div style={{ fontFamily: "Optima" }} className="m-3">
+        <h3>Oops! You do not have access!</h3>
+        <a href="/login" className="btn btn-success center">
+          Login
+        </a>
+      </div>
+    );
+  }
   }
 }

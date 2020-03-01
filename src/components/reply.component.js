@@ -95,7 +95,7 @@ export default class Reply extends Component {
               <thead className="thead-light">
                 <h4>Replies:</h4>
               </thead>
-              <tbody>{replyList}</tbody>
+              <tbody><td>{replyList}</td></tbody>
             </table>
             <h5>Join the Conversation:</h5>{" "}
             <form className="btn btn-success" onSubmit={this.onSubmit}>

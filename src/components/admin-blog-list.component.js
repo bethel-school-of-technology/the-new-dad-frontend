@@ -13,7 +13,7 @@ const Blog = props => (
       >
         edit
       </Link>
-     <p></p>
+      <p></p>
       <a
         href="#"
         onClick={() => {
@@ -70,28 +70,39 @@ export default class blogList extends Component {
   }
 
   render() {
-    return (
-      <div style={{ fontFamily: "optima" }}>
-        <h1 className="m-3">
-          Admin Blog List{" "}
-          <a href="/createblog" className="m-3 btn btn-success">
-            Create New Blog
-          </a>
-          <a href="/adminforumlist" className="m-3 btn btn-success">
-            Admin Forum List
-          </a>
-        </h1>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Date</th>
-              <th>Title</th>
-              <th className="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>{this.blogList()}</tbody>
-        </table>
-      </div>
-    );
+    var documentCookie = document.cookie;
+    var token = documentCookie.split("Bearer ");
+    console.log(token);
+    if (token.length === 2 && token.includes("auth=; dadmin=") || token.includes("dadmin=")) {
+      return (
+        <div style={{ fontFamily: "optima" }}>
+          <h1 className="m-3">
+            Admin Blog List{" "}
+            <a href="/createblog" className="m-3 btn btn-success">Create New Blog</a>
+            <a href="/adminforumlist" className="m-3 btn btn-success">Admin Forum List</a>
+            <a href="/adminlogout" className="m-3 btn btn-warning">Logout</a>
+          </h1>
+          <table className="table">
+            <thead className="thead-light">
+              <tr>
+                <th>Date</th>
+                <th>Title</th>
+                <th className="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>{this.blogList()}</tbody>
+          </table>
+        </div>
+      );
+    } else {
+      return (
+        <div style={{ fontFamily: "Optima" }} className="m-3">
+          <h3>Oops! You do not have access!</h3>
+          <a href="/login" className="btn btn-success center">
+            Login
+      </a>
+        </div>
+      );
+    }
   }
 }
