@@ -77,7 +77,7 @@ export default class EditBlog extends Component {
     var documentCookie = document.cookie;
     var token = documentCookie.split("Bearer ");
     console.log(token);
-    if (token.length === 2 && token.includes("dadmin=") || token.includes("auth=; dadmin=")) {
+    if ((token.length === 2 && token.includes("dadmin=")) || (token.length === 2 && token.includes("auth=; dadmin="))) {
       return (
         <div className="m-3" style={{ fontFamily: "optima" }}>
           <h3>Edit Blog</h3>

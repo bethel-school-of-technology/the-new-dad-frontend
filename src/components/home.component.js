@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import HomeImage from "../images/newdadhome.jpeg";
 import DadHold from "../images/dadhold.jpeg";
 import DadGoods from "../images/dadgoods.jpeg";

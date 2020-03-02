@@ -69,7 +69,7 @@ export default class CreateBlogs extends Component {
     var documentCookie = document.cookie;
     var token = documentCookie.split("Bearer ");
     console.log(token);
-    if (token.length === 2 && token.includes("dadmin=") || token.includes("auth=; dadmin=")) {
+    if ((token.length === 2 && token.includes("dadmin=")) || (token.length === 2 && token.includes("auth=; dadmin="))) {
       return (
         <div style={{ fontFamily: 'Optima' }} className="m-4">
           <h3>Create New Blog</h3>

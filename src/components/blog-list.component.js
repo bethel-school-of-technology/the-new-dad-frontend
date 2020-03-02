@@ -5,7 +5,7 @@ import GreenLogo from "../images/greenlogo.jpeg";
 
 const Blog = props => (
 
-  <div className="card m-5 align-center" style={{ width: '18rem' }}>
+  <div className="card m-5 align-center" style={{ width: '17rem' }}>
     <img className="card-img-top" src={GreenLogo} alt="Card cap"></img>
     <div className="card-body" style={{ fontFamily: 'Optima' }}>
       <h5 className="card-title">{props.blog.title}</h5>
@@ -62,8 +62,8 @@ export default class BlogList extends Component {
       <div style={{ fontFamily: 'Optima' }}>
         <img src={DadHold} className='img-fluid' alt="banner" />
         <h1 className='text-center mt-5'>THE NEW DAD BLOG</h1>
-        <div className="containter">
-          <div className="row ml-5 align-center">
+        <div className="container">
+          <div className="row ml-3 align-center">
             {this.blogList()}
           </div>
         </div >

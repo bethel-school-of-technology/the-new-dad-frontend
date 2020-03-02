@@ -73,7 +73,7 @@ export default class blogList extends Component {
     var documentCookie = document.cookie;
     var token = documentCookie.split("Bearer ");
     console.log(token);
-    if (token.length === 2 && token.includes("auth=; dadmin=") || token.includes("dadmin=")) {
+    if ((token.length === 2 && token.includes("dadmin=")) || (token.length === 2 && token.includes("auth=; dadmin="))) {
       return (
         <div style={{ fontFamily: "optima" }}>
           <h1 className="m-3">

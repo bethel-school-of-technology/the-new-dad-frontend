@@ -18,17 +18,6 @@ export default class CreatePosts extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   console.log(document.cookie);
-  //   axios.get("/posts").then(response => {
-  //     if (response.data.length > 0) {
-  //       this.setState({
-  //         users: response.data.map(user => user.username)
-  //       });
-  //     }
-  //   });
-  // }
-
   // onChangeUsername(e) {
   //   this.setState({
   //     username: e.target.value
