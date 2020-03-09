@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class UserCreated extends Component {
     state = {}
@@ -6,7 +7,7 @@ export default class UserCreated extends Component {
         return (
             <div style={{ fontFamily: 'Optima' }} className="m-3">
                 <h3>User Successfully Created!</h3>
-                <a href="/login" className="btn btn-success center">Login</a>
+                <Link to="/login" className="btn btn-success center">Login</Link>
             </div>
         );
     }

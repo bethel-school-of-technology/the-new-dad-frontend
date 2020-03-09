@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import Forum from "../images/forum.jpeg";
@@ -95,7 +96,7 @@ export default class Reply extends Component {
               <thead className="thead-light">
                 <h4>Replies:</h4>
               </thead>
-              <tbody>{replyList}</tbody>
+              <tbody><td>{replyList}</td></tbody>
             </table>
             <h5>Join the Conversation:</h5>{" "}
             <form className="btn btn-success" onSubmit={this.onSubmit}>
@@ -118,9 +119,9 @@ export default class Reply extends Component {
       return (
         <div style={{ fontFamily: "Optima" }} className="m-3">
           <h3>Please log in to view!</h3>
-          <a href="/login" className="btn btn-success center">
+          <Link to="/login" className="btn btn-success center">
             Login
-        </a>
+        </Link>
         </div>
       );
     }

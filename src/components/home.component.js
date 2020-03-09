@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import HomeImage from "../images/newdadhome.jpeg";
 import DadHold from "../images/dadhold.jpeg";
 import DadGoods from "../images/dadgoods.jpeg";
@@ -25,7 +26,7 @@ export default class Home extends Component {
                     <h5 className="card-title text-center">Got Questions? </h5>
                     <p className="card-text text-center">Check out commonly asked questions from new dads and ask your own!</p>
                     <div className="col text-center">
-                    <a href="/forum" className="btn btn-success center">Let's Go!</a>
+                    <Link to="/forum" className="btn btn-success center">Let's Go!</Link>
                     </div>
                   </div>
                 </div>               
@@ -46,7 +47,7 @@ export default class Home extends Component {
                     <h5 className="card-title text-center">Learn about the new dad life!</h5>
                     <p className="card-text text-center">Learn the things you need to know and some you maybe don't.</p>
                     <div className="col text-center">
-                    <a href="/blog" className="btn btn-success center">Let's Go!</a>
+                    <Link to="/blog" className="btn btn-success center">Let's Go!</Link>
                     </div>
                   </div>
                 </div>               
@@ -67,7 +68,7 @@ export default class Home extends Component {
                     <h5 className="card-title text-center">Spiritual resources to help you build stronger connection with God and your family.</h5>
                     <p className="card-text text-center">Recommended books, videos, podcasts, and more!</p>
                     <div className="col text-center">
-                    <a href="/spiritual" className="btn btn-success center">Let's Go!</a>
+                    <Link to="/spiritual" className="btn btn-success center">Let's Go!</Link>
                     </div>
                   </div>
                 </div>               
@@ -88,7 +89,7 @@ export default class Home extends Component {
                     <h5 className="card-title text-center">Goods and resources we recommend based off of experience!</h5>
                     <p className="card-text text-center">These are a few of the items that have made dadding better and easier</p>
                     <div className="col text-center">
-                    <a href="/goods" className="btn btn-success center">Let's Go!</a>
+                    <Link to="/goods" className="btn btn-success center">Let's Go!</Link>
                     </div>
                   </div>
                 </div>               

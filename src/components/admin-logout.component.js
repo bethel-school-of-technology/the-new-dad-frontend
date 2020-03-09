@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class AdminLogout extends Component {
@@ -10,9 +11,9 @@ export default class AdminLogout extends Component {
     return (
       <div style={{ fontFamily: "optima" }} className="m-4">
         <h3>You Are Now Logged Out</h3>
-        <a href="/login" className="btn btn-success center">
+        <Link to="/login" className="btn btn-success center">
           Log Back In!
-        </a>
+        </Link>
       </div>
     );
   }

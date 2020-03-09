@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import DadHold from "../images/dadhold.jpeg";
 import Blog from "../images/blog.jpeg";
 
 

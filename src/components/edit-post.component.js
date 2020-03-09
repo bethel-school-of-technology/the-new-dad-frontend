@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,16 +7,16 @@ import "react-datepicker/dist/react-datepicker.css";
 const Reply = props => (
   <tr>
     <td>{props.reply.reply}</td>
-      <br></br>
-      <a
-        href="#"
-        onClick={() => {
-          props.deleteReply(props.reply._id);
-        }}
-        className="btn-sm btn-warning"
-      >
-        delete
-      </a>
+    <br></br>
+    <Link
+      to="#"
+      onClick={() => {
+        props.deleteReply(props.reply._id);
+      }}
+      className="btn-sm btn-warning"
+    >
+      delete
+      </Link>
   </tr>
 );
 
@@ -120,77 +121,76 @@ export default class EditPost extends Component {
   replyList() {
     return this.state.replies.map((reply, index) => {
       return (
-          <Reply
-            reply={reply}
-            deleteReply={this.deleteReply}
-            key={reply._id}
-          />
+        <Reply
+          reply={reply}
+          deleteReply={this.deleteReply}
+          key={reply._id}
+        />
       );
     });
   }
-
 
   render() {
     var documentCookie = document.cookie;
     var token = documentCookie.split("Bearer ");
     console.log(token);
-    if (token.length === 2 && token.includes("dadmin=") || token.includes("auth=; dadmin=")) {
-    return (
-      <div className="m-3">
-        <h3>Edit Post</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Title:</label>
-            <textarea
-              type="text"
-              required
-              className="form-control"
-              value={this.state.title}
-              onChange={this.onChangeTitle}
-            />
-          </div>
-          <div className="form-group">
-            <label>Name:</label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              value={this.state.name}
-              onChange={this.onChangeName}
-            />
-          </div>
-          <div className="form-group">
-            <label>Date:</label>
-            <div>
-              <DatePicker
-                selected={this.state.date}
-                onChange={this.onChangeDate}
+    if ((token.length === 2 && token.includes("dadmin=")) || (token.length === 2 && token.includes("auth=; dadmin="))) {
+      return (
+        <div className="m-3">
+          <h3>Edit Post</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Title:</label>
+              <textarea
+                type="text"
+                required
+                className="form-control"
+                value={this.state.title}
+                onChange={this.onChangeTitle}
               />
             </div>
-          </div>
-          <table className="table">
-            <label>Replies:</label>
-            <tbody>{this.replyList()}</tbody>
-          </table>
-          <div className="form-group">
-            <input
-              type="submit"
-              value="Edit Question"
-              className="btn btn-success"
-            />
-          </div>
-        </form>
-      </div>
-    );
-  } else {
-    return (
-      <div style={{ fontFamily: "Optima" }} className="m-3">
-        <h3>Oops! You do not have access!</h3>
-        <a href="/login" className="btn btn-success center">
-          Login
-        </a>
-      </div>
-    );
-  }
+            <div className="form-group">
+              <label>Name:</label>
+              <input
+                type="text"
+                required
+                className="form-control"
+                value={this.state.name}
+                onChange={this.onChangeName}
+              />
+            </div>
+            <div className="form-group">
+              <label>Date:</label>
+              <div>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={this.onChangeDate}
+                />
+              </div>
+            </div>
+            <table className="table">
+              <label>Replies:</label>
+              <tbody>{this.replyList()}</tbody>
+            </table>
+            <div className="form-group">
+              <input
+                type="submit"
+                value="Edit Question"
+                className="btn btn-success"
+              />
+            </div>
+          </form>
+        </div>
+      );
+    } else {
+      return (
+        <div style={{ fontFamily: "Optima" }} className="m-3">
+          <h3>Oops! You do not have access!</h3>
+          <Link to="/login" className="btn btn-success center">
+            Login
+        </Link>
+        </div>
+      );
+    }
   }
 }

@@ -7,6 +7,7 @@ import Good from "../images/good.jpeg";
 import Killers from "../images/killers.jpeg";
 import Loveon from "../images/loveon.jpeg";
 import Bethel from "../images/bethel.png";
+
 export default class Spiritual extends Component {
   render() {
     return (

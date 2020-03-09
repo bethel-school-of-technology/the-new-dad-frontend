@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -70,14 +71,13 @@ export default class EditBlog extends Component {
         console.log(response);
         this.props.history.push("/adminbloglist");
       });
-
   }
 
   render() {
     var documentCookie = document.cookie;
     var token = documentCookie.split("Bearer ");
     console.log(token);
-    if (token.length === 2 && token.includes("dadmin=") || token.includes("auth=; dadmin=")) {
+    if ((token.length === 2 && token.includes("dadmin=")) || (token.length === 2 && token.includes("auth=; dadmin="))) {
       return (
         <div className="m-3" style={{ fontFamily: "optima" }}>
           <h3>Edit Blog</h3>
@@ -125,9 +125,9 @@ export default class EditBlog extends Component {
       return (
         <div style={{ fontFamily: "Optima" }} className="m-3">
           <h3>Oops! You do not have access!</h3>
-          <a href="/login" className="btn btn-success center">
+          <Link to="/login" className="btn btn-success center">
             Login
-        </a>
+        </Link>
         </div>
       );
     }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -117,9 +118,9 @@ export default class CreatePosts extends Component {
       return (
         <div style={{ fontFamily: "Optima" }} className="m-3">
           <h3>Please log in to ask a question!</h3>
-          <a href="/login" className="btn btn-success center">
+          <Link to="/login" className="btn btn-success center">
           Login
-        </a>
+        </Link>
         </div>
       );
     }
