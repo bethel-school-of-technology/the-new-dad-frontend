@@ -8,9 +8,9 @@ const Post = props => (
     <td>{props.post.date.substring(0, 10)}</td>
     <td>{props.post.title}</td>
     <td>
-      <a href={"/reply/" + props.post._id} className="btn-sm btn-success">
+      <Link to={"/reply/" + props.post._id} className="btn-sm btn-success">
         View
-      </a>
+      </Link>
     </td>
   </tr>
 );

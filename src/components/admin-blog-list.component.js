@@ -14,15 +14,15 @@ const Blog = props => (
         edit
       </Link>
       <p></p>
-      <a
-        href="#"
+      <Link
+        to="#"
         onClick={() => {
           props.deleteBlog(props.blog._id);
         }}
         className="btn-sm btn-warning text-center"
       >
         delete
-      </a>
+      </Link>
     </td>
   </tr>
 );
@@ -78,9 +78,9 @@ export default class blogList extends Component {
         <div style={{ fontFamily: "optima" }}>
           <h1 className="m-3">
             Admin Blog List{" "}
-            <a href="/createblog" className="m-3 btn btn-success">Create New Blog</a>
-            <a href="/adminforumlist" className="m-3 btn btn-success">Admin Forum List</a>
-            <a href="/adminlogout" className="m-3 btn btn-warning">Logout</a>
+            <Link to="/createblog" className="m-3 btn btn-success">Create New Blog</Link>
+            <Link to="/adminforumlist" className="m-3 btn btn-success">Admin Forum List</Link>
+            <Link to="/adminlogout" className="m-3 btn btn-warning">Logout</Link>
           </h1>
           <table className="table">
             <thead className="thead-light">
@@ -98,9 +98,9 @@ export default class blogList extends Component {
       return (
         <div style={{ fontFamily: "Optima" }} className="m-3">
           <h3>Oops! You do not have access!</h3>
-          <a href="/login" className="btn btn-success center">
+          <Link to="/login" className="btn btn-success center">
             Login
-      </a>
+      </Link>
         </div>
       );
     }

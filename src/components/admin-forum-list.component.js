@@ -9,15 +9,15 @@ const Post = props => (
     <td>
       <Link to={"/editpost/" + props.post._id} className="btn-sm btn-success btn-block text-center">edit</Link>{" "}
       <br></br>
-      <a
-        href="#"
+      <Link
+        to="#"
         onClick={() => {
           props.deletePost(props.post._id);
         }}
         className="btn-sm btn-block btn-warning"
       >
         delete
-      </a>
+      </Link>
     </td>
   </tr>
 );
@@ -73,7 +73,7 @@ export default class AdminForumList extends Component {
         <div style={{ fontFamily: 'Optima' }}>
           <h1 className="m-3">
             Admin Forum List{" "}
-            <a href="/adminbloglist" className="m-3 btn btn-success">Admin Blog List</a>
+            <Link to="/adminbloglist" className="m-3 btn btn-success">Admin Blog List</Link>
             <a href="/adminlogout" className="m-3 btn btn-warning">Logout</a>
           </h1>
           <table className="table">
@@ -92,9 +92,9 @@ export default class AdminForumList extends Component {
       return (
         <div style={{ fontFamily: "Optima" }} className="m-3">
           <h3>Oops! You do not have access!</h3>
-          <a href="/login" className="btn btn-success center">
+          <Link to="/login" className="btn btn-success center">
             Login
-          </a>
+          </Link>
         </div>
       );
     }
